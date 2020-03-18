@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/03/18/demo/</loc>
+    
+    <lastmod>2020-03-18T12:42:11.961Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/data/butterfly.json</loc>
     
     <lastmod>2020-03-18T12:06:51.723Z</lastmod>
