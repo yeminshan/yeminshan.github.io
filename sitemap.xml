@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/03/19/http/</loc>
+    
+    <lastmod>2020-03-19T14:17:06.521Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/19/vue%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0-jsx/</loc>
+    
+    <lastmod>2020-03-19T14:10:36.925Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/03/18/demo/</loc>
     
     <lastmod>2020-03-18T12:42:11.961Z</lastmod>
