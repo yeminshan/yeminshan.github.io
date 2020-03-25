@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/03/19/vue%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0-jsx/</loc>
+    
+    <lastmod>2020-03-25T00:50:38.526Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/24/vue%E9%A1%B9%E7%9B%AEmock%E6%95%B0%E6%8D%AE%E6%96%B9%E6%A1%88/</loc>
+    
+    <lastmod>2020-03-24T10:07:22.106Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/03/21/webpack/</loc>
     
     <lastmod>2020-03-23T13:28:15.273Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>http://yoursite.com/2020/03/19/%E5%B8%B8%E7%94%A8%E7%9A%84%E9%A1%B5%E9%9D%A2%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2020-03-19T14:51:52.733Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/19/vue%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0-jsx/</loc>
-    
-    <lastmod>2020-03-19T14:44:53.261Z</lastmod>
     
   </url>
   
