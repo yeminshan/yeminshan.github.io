@@ -550,6 +550,31 @@ modules: {
 
 2.7 插件
 
- 
+1. 使用vuex-along插，件解决刷新问题， store数据没有保留
 
- 
+ ```js
+import vuexAlong from 'vuex-along'
+import createVuexAlong from 'vuex-along'
+new Vuex.Store({
+  modules: {
+    menu,
+    user
+  },
+  // plugins: [vuexAlong]
+  plugins: [
+    createVuexAlong({
+      name: 'admin', // 设置保存的集合名字，避免同站点下的多项目数据冲突
+      local: {
+        list: [
+          'user.currentMenu',
+          'user.userMsg'
+        ]
+      },
+      session: {
+        list: [
+        ] // 保存 sessionStorage
+      }
+    })
+  ]
+})
+ ```
