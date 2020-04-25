@@ -20,7 +20,7 @@ export default Tree;
 ### [tree.vue](https://github.com/ElemeFE/element/blob/dev/packages/tree/src/tree.vue#L41)
 
 ```js
- import TreeStore from './model/tree-store'; 
+  import TreeStore from './model/tree-store'; 
   import { getNodeKey, findNearestComponent } from './model/util';
   import ElTreeNode from './tree-node.vue'; // components: { ElTreeNode },
   import {t} from 'element-ui/src/locale';

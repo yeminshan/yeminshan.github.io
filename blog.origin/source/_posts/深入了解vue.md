@@ -8,42 +8,10 @@ categories: [vue]
 
 1. vue 工作机制
 
-先导图一张
+上图一张
 [资料:Vue的内部运行机制](https://blog.csdn.net/RedLoVE0908/article/details/99749359)
 ![avatar](https://img-blog.csdnimg.cn/20190819185138874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70)
-
-
-new Vue 
-
-初始化 （生命周期和事件）
-
-beforeCreate
-
-初始化 （注入和校验）
-
-created
-
-编译阶段
-1。指定el ，到3，
-2。未指定el 当调用vm.$mount(e) 到3
-3。 指定template，是：template编译到render函数中，否： 将el外部的html作为template编译
-
-
-beforeMoint
-创建vm.$el 替换el
-
-mounted （挂载完毕）
-
-当有更新 虚拟DOM重新渲染，并应用更新
-
-调用vm.destory()
-
-beforeDestroy
-解除绑定销毁子组件以及事件监听器
-销毁完毕
-...
-destroyed
-
+![avatar](https://cn.vuejs.org/images/lifecycle.png)
 
 
 
@@ -52,6 +20,8 @@ destroyed
 
 
 Object.defineProperty(obj, prop, descriptor)
+直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+
 参数 | 描述
 -|-
 obj | 要定义属性的对象。
