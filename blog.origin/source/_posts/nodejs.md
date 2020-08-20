@@ -36,3 +36,24 @@ npm install XX ，并且还会生成package.json，并将安装包信息记录�
 ### 4.npm init 生成package.json,用来记录这个项目的详细信息的；创建npm 项目
 
 ### 5.node事件循环
+
+
+## node 版本管理工具 nvm
+1. 安装
+mac: 
+```
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+
+```
+
+
+2. 安装淘宝镜像
+```
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+mac安装不成功时：
+```
+npm install -g cnpm --registry=https://registry.npm.taobao.org --verbose  
+sudo npm install -g cnpm --registry=https://registry.npm.taobao.org --verbose
+
+```

@@ -52,3 +52,17 @@ categories: [vue]
 }
 
 ```
+
+
+Eg
+```js
+function install(Vue) {
+  if (install.installed) return;
+  Vue.component('Grid', Grid)
+}
+
+export default {
+  install
+}
+
+```
