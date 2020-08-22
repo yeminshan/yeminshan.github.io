@@ -7,15 +7,25 @@ categories: ["websocket"]
 
 # Websocket 是什么？
 
+WebSocket协议是html5的一种通信协议，该协议兼容我们常用的浏览器
+
 WebSocket 是一种在单个 TCP 连接上进行全双工通信的协议。
 WebSocket 通信协议 诞生于 2011 年，WebSocket API 也被 W3C 定为标准。
 Websocket 允许服务器向客户端推送数据，并且只需要完成一次握手，就能持续的进行双向数据传输
-协议标识符为 ws，经加密为 wss
+ WS协议和WSS协议两个均是WebSocket协议的SCHEM，两者一个是非安全的，一个是安全的。也是统一的资源标志符。
+
+WSS表示在TLS之上的WebSocket。WS一般默认是80端口，而WSS默认是443端口，大多数网站用的就是80和433端口
+
+websocket分为握手和数据传输阶段，即进行了HTTP握手 + 双工的TCP连接。
 
 #### 1.客户端和服务器如何完成握手
 
 Websocket 通过 HTTP/1.1 协议的 101 状态码进行握手。
 为了创建 Websocket 连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为“握手”（handshaking）。
+
+![image-20200821160238248](C:\Users\ymshan\AppData\Roaming\Typora\typora-user-images\image-20200821160238248.png)
+
+
 
 #### 2. API
 
@@ -72,7 +82,19 @@ WebSocket(url [, protocols])   返回一个WebSocket 对象
 
 
 
+### 应用场景
 
+· 即时聊天通信
+
+· 多玩家游戏
+
+· 在线协同编辑/编辑
+
+· 实时数据流的拉取与推送
+
+· 体育/游戏实况
+
+· 实时地图位置
 
  
 
