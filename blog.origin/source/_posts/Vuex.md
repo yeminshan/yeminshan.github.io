@@ -106,9 +106,9 @@ export default {
 }
 ```
 
- 
 
- 
+
+
 
 2.1.3 对象展开运算符
 
@@ -122,7 +122,7 @@ computed: {
   })
 }
 ```
- 
+
 
 
 3.1 Getter ()
@@ -147,12 +147,12 @@ const store = new Vuex.Store({
   }
 })
 ```
- 
+
 
 
- 
 
- 
+
+
 
 3.1.2  通过属性访问
 
@@ -171,7 +171,7 @@ getters: {
 
 
 
- 
+
 
 
 
@@ -198,12 +198,12 @@ getters: {
 //调用
 store.getters.getTodoById(2) // -> { id: 2, text: '...', done: false }
 ```
- 
+
 
 
- 
 
- 
+
+
 
 3.1.5 mapGetters  辅助函数
 
@@ -226,9 +226,9 @@ export default {
 ```
 
 
- 
 
- 
+
+
 
 4.1mutation（存放改变state的状态的方法）
 
@@ -318,7 +318,7 @@ export default {
   }
 }﻿​
 ```
- 
+
 
 2.5  Action
 
@@ -384,7 +384,7 @@ actions: {
 ```
 
 
- 
+
 
 2.5.3组件中分发action
 
@@ -392,7 +392,7 @@ actions: {
 
 或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）
 
- 
+
 ```
 import { mapActions } from 'vuex'
 
@@ -411,9 +411,9 @@ export default {
 }
 ```
 
- 
 
- 
+
+
 
 2.5.4 组合action
 
@@ -464,7 +464,7 @@ const store = new Vuex.Store({
 store.state.a // -> moduleA 的状态
 store.state.b // -> moduleB 的状态﻿​
 ```
- 
+
 
 2.6.1 模块的局部状态
 
@@ -538,7 +538,7 @@ modules: {
     }
   }
 ```
- 
+
 
 2.6.5 带命名空间的绑定函数
 
@@ -550,7 +550,22 @@ modules: {
 
 2.7 插件
 
-1. 使用vuex-along插，件解决刷新问题， store数据没有保留
+##### vuex数据持久化
+
+1. 使用vuex-along插件，解决刷新问题， store数据没有保留问题。 **[vuex-along - 持久化存储 state 的 vuex 扩展](https://www.npmjs.com/package/vuex-along)**
+
+   
+
+2. 其他插件 import persistedState from 'vuex-persistedstate'   ....  plugins: [persistedState()]
+
+**数据清理**
+
+```
+window.clearVuexAlong(local = true, session = true):void;
+clearVuexAlong() // localStorage 和 sessionStorage 都会被清理
+clearVuexAlong(true,false) // 只清理 localStorage
+clearVuexAlong(false,true) // 只清理 sessionStorage
+```
 
  ```js
 import vuexAlong from 'vuex-along'
@@ -560,15 +575,16 @@ new Vuex.Store({
     menu,
     user
   },
-  // plugins: [vuexAlong]
+  // plugins: [createVuexAlong]
   plugins: [
     createVuexAlong({
       name: 'admin', // 设置保存的集合名字，避免同站点下的多项目数据冲突
       local: {
-        list: [
+        list: [ // 需要监听的属性名或模块名的字符串列表
           'user.currentMenu',
           'user.userMsg'
-        ]
+        ],
+        isFilter: true // 过滤 list 中的字段而非保存, 标识除list 以外
       },
       session: {
         list: [
@@ -577,4 +593,5 @@ new Vuex.Store({
     })
   ]
 })
+
  ```

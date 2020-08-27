@@ -11,16 +11,16 @@ webpack devserver中有一个设置可用来模拟接口返回数据：
 
     devServer.before
     function
-
+    
     Provides the ability to execute custom middleware prior to all other middleware internally within the server. This could be used to define custom handlers, for example:
-
+    
     before(app){
       app.get('/some/path', function(req, res) {
         res.json({ custom: 'response' });
       });
     }
 
-实现：
+使用express实现：
 ```js
 // 以下设置只针对开发环境，因此可在webpack.dev.config.js 设置(vuecli2.0+)
 // 需要使用express，并设置
@@ -51,6 +51,7 @@ devServer.before(app) {
     npm install mockjs --save-dev
 
 2.引入mock规则
+
 ```js
 // 可在在main.js引入，在vue搭建的多页面项目中，千万要注意，入口文件可能不叫main.js，不要犯糊涂了！（在这里被坑了哭）
 require('./mock.js')
@@ -62,7 +63,7 @@ const Mock = require('mockjs');
 const mockDate = {
         articles: 'XXXXX'
     }
-// Mock.mock( url, methods [post | get] , 返回的数据)；
+// Mock.mock( url, methods [ /post|get/i | post | get] , 返回的数据)；// /post|get/i 匹配post和get模式 也可以用'post'或'get'
 Mock.mock('/api', 'post', mockDate);
 ```
 
@@ -72,3 +73,7 @@ yapi API
 
 # node实现一个简单的接口
 这个方法还没有demo
+
+
+
+https://www.jianshu.com/p/c07e921ebc6d
