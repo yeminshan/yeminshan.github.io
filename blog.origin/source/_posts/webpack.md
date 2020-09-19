@@ -6,16 +6,46 @@ tags: [webpack]
 top: true
 ---
 
-### 模块化
+### 模块化演进
 
 模块化发展： 
 
-1.文件划分：如 a.js b.js。缺点
+1. 文件划分：
 
- 2.命名空间方式：
-如：moduleA = { ... }
+每个功能及其相关状态数据各自单独放到不同的 JS 文件中，约定每个文件是一个独立的模块。使用某个模块将这个模块引入到页面中，一个 script 标签对应一个模块，然后直接调用模块中的成员（变量 / 函数）。
 
-3.IIFE (立即执行函数):每个模块成员都放在立即执行函数的私有作用域中，需要暴露给外部成员通过挂载到全局对象上。
+如 a.js b.js。
+
+缺点：
+
+模块直接在全局工作，大量模块成员污染全局作用域；
+没有私有空间，所有模块内的成员都可以在模块外部被访问或者修改；
+一旦模块增多，容易产生命名冲突；
+无法管理模块与模块之间的依赖关系；
+在维护的过程中也很难分辨每个成员所属的模块。
+
+2. 命名空间方式：
+
+   每个模块只暴露一个全局对象，所有模块成员都挂载到这个全局对象中，具体做法是在第一阶段的基础上，通过将每个模块“包裹”为一个全局对象的形式实现，这种方式就好像是为模块内的成员添加了“命名空间”，所以我们又称之为命名空间方式。
+
+   如：
+
+   ```
+   moduleA = {
+   method1: function () {
+       console.log('moduleA#method1')
+    }}
+    
+   moduleA.method1()
+   ```
+
+   
+
+3.IIFE (立即执行函数):
+
+每个模块成员都放在立即执行函数的私有作用域中，需要暴露给外部成员通过挂载到全局对象上。
+
+这种方式带来了私有成员的概念，私有成员只能在模块成员内通过闭包的形式访问，这就解决了前面所提到的全局作用域污染和命名冲突的问题。
 
 如
 
@@ -39,7 +69,7 @@ window.moduleA = {
    let public = 'moduleA',
    const private = 'modulePrivate'
    function methods () {
-   return public
+   	return public
    }
    window.moduleA = {
    	methods: methods
@@ -47,22 +77,27 @@ window.moduleA = {
    })(jQuery)
    ```
 
-   
+   ### 模块化规范的出现
 
-   
-
-#### commonjsJs
+#### 1. commonjsJs（同步加载模块）
 
 广泛使用的 javascript 模块化规范，node.js 采用这种方式得以流行。
-缺点：无法直接运行在浏览器环境下
+缺点：不适合直接运行在浏览器环境下
 
 moduel.exports 导出
 
 require 函数导入
 
-#### AMD
+#### 2. AMD（Asynchronous Module Definition 异步模块定义规范）
 
 异步加载依赖模块，可直接在浏览器运行，但是 javascript 运行环境没有原生支持，需要倒入 AMD 库
+
+
+
+**在 Node.js 环境中，我们遵循 CommonJS 规范来组织模块。**（CommonJS 属于内置模块系统）
+**在浏览器环境中，我们遵循 ES Modules 规范。**
+
+Node 环境也会逐渐趋向于 ES Modules 规范。语言层面实现的模块化。
 
 #### ES6 模块化
 
@@ -115,6 +150,11 @@ js 超集，比 ts 灵活
 # Webpack
 
 解决的问题： 在项目中更高效地管理和维护项目中的每个资源。
+
+1. 具备编译代码的能力，新特性的代码转换为能够兼容大多数环境的代码，解决我们所面临的环境兼容问题
+2. 散落的模块再打包到一起，这样就解决了浏览器频繁请求模块文件的问题。开发阶段才需要模块化的文件划分!
+3. 支持不同种类的前端模块类型,样式、图片、字体等所有资源文件都作为模块使用
+
 核心：loader 机制和插件机制
 
 ## 安装
@@ -169,7 +209,7 @@ webpack 从 entry 递归解析出所有依赖的 module，根据配置的 loader
 ### Entry
 
 配置模块入口，必填。
-入口文件的路径可以是相对路径，webpack 寻找相对路径文件以 context 为根目录，context 默认值为执行启动 webpack 时所在的当前工作目录，且 context 必须是一个绝对路径的字符串。
+入口文件的路径可以是**相对路径**，webpack 寻找相对路径文件以 context 为根目录，context 默认值为执行启动 webpack 时所在的当前工作目录，且 context 必须是一个绝对路径的字符串。
 
 修改 context 方式：
 
@@ -267,7 +307,11 @@ module: {
       browserify: false, // 禁用browerify
       requirejs: false // 禁用requirejs
     }
-  }]
+  },
+  {
+      test: /\.css$/,
+      use: [ 'style-loader','css-loader'], // 先安装 npm install css-loader --save-dev  Loader，执行顺序是从后往前执行的!!!!!!
+   }]
 }
 
 ```
@@ -276,15 +320,15 @@ module: {
 
 设置 webpack 如何去寻找依赖的模块
 
-| resolve 属性          | 示例                                           | 说明                                                       |
-| --------------------- | ---------------------------------------------- | ---------------------------------------------------------- |
-| alias                 | alias:{commponents: './src/commonents'}        | 配置别名来映射导入路径                                     |
-| mainFields            | mainFields:['browser', 'main']                 | 优先采用多分第三方模块的那块代码                           |
-| extensions            | extensions:['.ts', '.js', '.json']             | 导入语句没有后缀时，配置后缀匹配列表                       |
-| modules               | modules: ['../src/components', 'node_modules'] | 去那些目录寻找第三方模块，默认 node_modules                |
-| descriptonFiles       | descriptonFiles:['package.json']               | 配置描述第三方模块的描述，默认 package.json                |
-| enforceExtension      | enforceExtension:true                          | 是否需要带后缀                                             |
-| enforeModuleExtension | enforeModuleExtension: false                   | 与 enforceExtension 相似，但只对 node_modules 下的模块生效 |
+| resolve 属性          | 示例                                           | 说明                                                       |      |
+| --------------------- | ---------------------------------------------- | ---------------------------------------------------------- | ---- |
+| alias                 | alias:{commponents: './src/commonents'}        | 配置别名来映射导入路径                                     |      |
+| mainFields            | mainFields:['browser', 'main']                 | 优先采用多分第三方模块的那块代码                           |      |
+| extensions            | extensions:['.ts', '.js', '.json']             | 导入语句没有后缀时，配置后缀匹配列表                       |      |
+| modules               | modules: ['../src/components', 'node_modules'] | 去那些目录寻找第三方模块，默认 node_modules                |      |
+| descriptonFiles       | descriptonFiles:['package.json']               | 配置描述第三方模块的描述，默认 package.json                |      |
+| enforceExtension      | enforceExtension:true                          | 是否需要带后缀                                             |      |
+| enforeModuleExtension | enforeModuleExtension: false                   | 与 enforceExtension 相似，但只对 node_modules 下的模块生效 |      |
 
 ## Plugins
 
@@ -531,3 +575,35 @@ module.exports = {
 ### 构建 Electron 应用
 
 ### 多个单页面应用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+$ npm init --yes
+$ npm i webpack webpack-cli --save-dev
+
+$ npx webpack --version
+// @TODO !!!!!
+ webpack智能提示 
+```
+

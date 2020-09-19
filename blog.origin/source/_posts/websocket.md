@@ -80,6 +80,19 @@ WebSocket(url [, protocols])   返回一个WebSocket 对象
 | message | 收到数据时触发                             |      |
 | open    | 连接成功时触发                             |      |
 
+```js
+var ws = new WebSocket('ws://localhost:8080');
+ws.onopen = function () {
+  ws.send('Hello Server!');
+}
+ws.addEventListener("close", function(event) {
+  var code = event.code;
+  var reason = event.reason;
+  var wasClean = event.wasClean;
+  // handle close event
+});
+```
+
 
 
 ### 应用场景
