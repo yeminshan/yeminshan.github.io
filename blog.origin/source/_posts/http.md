@@ -121,3 +121,32 @@ content-type:application/x-www-form-urlencoded 【form表单默认的数据格�
 content-type: application/json     请求数据格式必须是json（用JSON.stringfy处理过的   Request Payload  （会有{}）
 
 content-type: multipart/form-data 用于表单上传，多用于上传文件  Form Data
+
+
+
+1.请求种类有 HEAD、GET、PUT、POST、DELETE、OPTIONS等，但是基本上用到的大多都是GET、PUT、POST、DELETE。
+
+2.原来在 CORS-跨域资源共享 中，可以使用 OPTIONS 方法发起一个预检请求，以检测实际请求是否可以被服务器所接受。预检请求报文中的 Access-Control-Request-Method 首部字段告知服务器实际请求所使用的 HTTP 方法；Access-Control-Request-Headers 首部字段告知服务器实际请求所携带的自定义首部字段。服务器基于从预检请求获得的信息来判断，是否接受接下来的实际请求。览器先询问服务器，当前网页的域名是否在服务器的许可名单之中，及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
+3.当你的Content-Type设置为“application/json;charset=utf-8”并自定义请求头可能就会导致这种情况
+
+4.AJAX中出现两次请求，OPTIONS请求和GET请求，原因可能是 ：
+
+1、请求方法不是GET/HEAD/POST 
+2、POST请求的Content-Type并非  application/x-www-form-urlencoded, multipart/form-data, 或text/plain 
+3、请求设置了自定义的header字段
+
+### Axios
+Axios 是一个基于 promise 的 HTTP 库
+axios默认是 json 格式提交， 若要支持form-data 需要 转义 一般应用qs 方法
+
+
+request 请求
+
+
+response 响应
+响应结构： 
+data： 服务端返回的数据
+status：http状态码
+statusTest：状态信息
+headers： 响应头
+config： 请求提供的配置信息
