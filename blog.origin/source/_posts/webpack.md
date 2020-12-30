@@ -1,5 +1,4 @@
 ---
-
 title: webpack简单认识
 date: 2020-03-21 15:34:51
 tags: [webpack]
@@ -8,7 +7,7 @@ top: true
 
 ### 模块化演进
 
-模块化发展： 
+模块化发展：
 
 1. 文件划分：
 
@@ -26,22 +25,20 @@ top: true
 
 2. 命名空间方式：
 
-   每个模块只暴露一个全局对象，所有模块成员都挂载到这个全局对象中，具体做法是在第一阶段的基础上，通过将每个模块“包裹”为一个全局对象的形式实现，这种方式就好像是为模块内的成员添加了“命名空间”，所以我们又称之为命名空间方式。
+每个模块只暴露一个全局对象，所有模块成员都挂载到这个全局对象中，具体做法是在第一阶段的基础上，通过将每个模块“包裹”为一个全局对象的形式实现，这种方式就好像是为模块内的成员添加了“命名空间”，所以我们又称之为命名空间方式。
 
-   如：
+如：
 
-   ```
-   moduleA = {
-   method1: function () {
-       console.log('moduleA#method1')
-    }}
-    
-   moduleA.method1()
-   ```
+```
+moduleA = {
+method1: function () {
+    console.log('moduleA#method1')
+}}
 
-   
+moduleA.method1()
+```
 
-3.IIFE (立即执行函数):
+3. IIFE (立即执行函数):
 
 每个模块成员都放在立即执行函数的私有作用域中，需要暴露给外部成员通过挂载到全局对象上。
 
@@ -64,40 +61,40 @@ window.moduleA = {
 
 4. IIFE 依赖参数
 
-   ```js
-   (function ($) {
-   let public = 'moduleA',
-   const private = 'modulePrivate'
-   function methods () {
-   	return public
-   }
-   window.moduleA = {
-   	methods: methods
-   }
-   })(jQuery)
-   ```
+```js
+(function ($) { // 参数表明模块的依赖，在立即执行函数传入参数
+let public = 'moduleA',
+const private = 'modulePrivate'
+function methods () {
+return public
+}
+window.moduleA = {
+methods: methods
+}
+})(jQuery)
+```
 
-   ### 模块化规范的出现
+### 模块化规范的出现
 
 #### 1. commonjsJs（同步加载模块）
 
 广泛使用的 javascript 模块化规范，node.js 采用这种方式得以流行。
-缺点：不适合直接运行在浏览器环境下
+缺点：<font color='red'>不适合直接运行在浏览器环境下</font>
 
-moduel.exports 导出
+**moduel.exports 导出**
 
-require 函数导入
+**require 函数导入**
 
 #### 2. AMD（Asynchronous Module Definition 异步模块定义规范）
 
 异步加载依赖模块，可直接在浏览器运行，但是 javascript 运行环境没有原生支持，需要倒入 AMD 库
 
-
-
 **在 Node.js 环境中，我们遵循 CommonJS 规范来组织模块。**（CommonJS 属于内置模块系统）
 **在浏览器环境中，我们遵循 ES Modules 规范。**
 
 Node 环境也会逐渐趋向于 ES Modules 规范。语言层面实现的模块化。
+
+
 
 #### ES6 模块化
 
@@ -146,6 +143,10 @@ js 超集，比 ts 灵活
 ##### Rollup
 
 类似 webpack，但不如 webpack 完善
+
+
+
+
 
 # Webpack
 
@@ -320,15 +321,15 @@ module: {
 
 设置 webpack 如何去寻找依赖的模块
 
-| resolve 属性          | 示例                                           | 说明                                                       |      |
-| --------------------- | ---------------------------------------------- | ---------------------------------------------------------- | ---- |
-| alias                 | alias:{commponents: './src/commonents'}        | 配置别名来映射导入路径                                     |      |
-| mainFields            | mainFields:['browser', 'main']                 | 优先采用多分第三方模块的那块代码                           |      |
-| extensions            | extensions:['.ts', '.js', '.json']             | 导入语句没有后缀时，配置后缀匹配列表                       |      |
-| modules               | modules: ['../src/components', 'node_modules'] | 去那些目录寻找第三方模块，默认 node_modules                |      |
-| descriptonFiles       | descriptonFiles:['package.json']               | 配置描述第三方模块的描述，默认 package.json                |      |
-| enforceExtension      | enforceExtension:true                          | 是否需要带后缀                                             |      |
-| enforeModuleExtension | enforeModuleExtension: false                   | 与 enforceExtension 相似，但只对 node_modules 下的模块生效 |      |
+| resolve 属性          | 示例                                           | 说明                                                       |     |
+| --------------------- | ---------------------------------------------- | ---------------------------------------------------------- | --- |
+| alias                 | alias:{commponents: './src/commonents'}        | 配置别名来映射导入路径                                     |     |
+| mainFields            | mainFields:['browser', 'main']                 | 优先采用多分第三方模块的那块代码                           |     |
+| extensions            | extensions:['.ts', '.js', '.json']             | 导入语句没有后缀时，配置后缀匹配列表                       |     |
+| modules               | modules: ['../src/components', 'node_modules'] | 去那些目录寻找第三方模块，默认 node_modules                |     |
+| descriptonFiles       | descriptonFiles:['package.json']               | 配置描述第三方模块的描述，默认 package.json                |     |
+| enforceExtension      | enforceExtension:true                          | 是否需要带后缀                                             |     |
+| enforeModuleExtension | enforeModuleExtension: false                   | 与 enforceExtension 相似，但只对 node_modules 下的模块生效 |     |
 
 ## Plugins
 
@@ -576,34 +577,11 @@ module.exports = {
 
 ### 多个单页面应用
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 $ npm init --yes
 $ npm i webpack webpack-cli --save-dev
 
 $ npx webpack --version
 // @TODO !!!!!
- webpack智能提示 
+ webpack智能提示
 ```
-
