@@ -30,6 +30,16 @@ xmlhttp.open(method,url,async);
  * /
 xmlhttp.send(string)
 ```
+### 兼容问题
+
+```js
+var request;
+if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest();
+} else {
+    request = new ActiveXObject('Microsoft.XMLHTTP');
+}
+```
 
 ### 例子
 ```js
