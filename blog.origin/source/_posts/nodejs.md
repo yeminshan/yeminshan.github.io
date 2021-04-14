@@ -202,4 +202,24 @@ sudo npm install -g cnpm --registry=https://registry.npm.taobao.org --verbose
 > ```
 
 
+node 版本管理工具 gnvm
+
+1.将 gnvm.exe 复制到 node 安装目录下 （先安装 node 的情况，未安装时，直接新建一个文件夹，将 gnvm.exe 存放进去。添加该文件夹环境变量）
+
+2.设置淘宝源 ：
+
+```
+gnvm config registry TAOBAO
+```
+
+3.常用命令
+
+```
+gnvm ls                         # 查看node 版本
+gnvm search *.*.*               # 查询node版本
+gnvm use XXXX                   # 切换node版本
+gnvm install X.X.X              # 安装某版本
+gnvm uninstall X.X.X            # 卸载
+```
+
 
