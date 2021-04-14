@@ -10,11 +10,11 @@
     "load-Butterfly": "git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly"
   },
   "hexo": {
-    "version": "4.2.0"
+    "version": "5.4.0"
   },
   "dependencies": {
     "add": "^2.0.6",
-    "hexo": "^4.0.0",
+    "hexo": "^5.0.0",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
