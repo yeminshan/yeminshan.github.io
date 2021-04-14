@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>深入了解vue | 珊珊的小本子</title><meta name="keywords" content="vue"><meta name="author" content="Yvoone,yeminshan@126.com"><meta name="copyright" content="Yvoone"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考1  vue 工作机制  上图一张资料:Vue的内部运行机制  响应式原理实现全靠Object.defineProperty（ES6，ES5无法shim的特性，因此不支持IE8及以下）,转换成getter&#x2F;setter  Object.defineProperty(obj, prop, descriptor)直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。    参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入了解vue">
+<meta property="og:url" content="https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/index.html">
+<meta property="og:site_name" content="珊珊的小本子">
+<meta property="og:description" content="参考1  vue 工作机制  上图一张资料:Vue的内部运行机制  响应式原理实现全靠Object.defineProperty（ES6，ES5无法shim的特性，因此不支持IE8及以下）,转换成getter&#x2F;setter  Object.defineProperty(obj, prop, descriptor)直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。    参数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-04-12T08:51:46.000Z">
+<meta property="article:modified_time" content="2021-04-14T01:52:48.753Z">
+<meta property="article:author" content="Yvoone">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-04-14 09:52:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="珊珊的小本子" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">珊珊的小本子</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">深入了解vue</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-04-12T08:51:46.000Z" title="发表于 2020-04-12 16:51:46">2020-04-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-14T01:52:48.753Z" title="更新于 2021-04-14 09:52:48">2021-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue/">vue</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="深入了解vue"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://ustbhuangyi.github.io/vue-analysis/v2/prepare/">参考1</a></p>
+<ol>
+<li>vue 工作机制</li>
+</ol>
+<p>上图一张<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/RedLoVE0908/article/details/99749359">资料:Vue的内部运行机制</a><br><img src="https://img-blog.csdnimg.cn/20190819185138874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70" alt="avatar"><br><img src="https://cn.vuejs.org/images/lifecycle.png" alt="avatar"></p>
+<ol start="2">
+<li>响应式原理实现<br>全靠Object.defineProperty（ES6，ES5无法shim的特性，因此不支持IE8及以下）,转换成getter/setter</li>
+</ol>
+<p>Object.defineProperty(obj, prop, descriptor)<br>直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>obj</td>
+<td>要定义属性的对象。</td>
+</tr>
+<tr>
+<td>prop</td>
+<td>要定义或修改的属性的名称或 Symbol 。</td>
+</tr>
+<tr>
+<td>descriptor</td>
+<td>要定义或修改的属性描述符。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>descriptor属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>configurable</td>
+<td>该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。</td>
+</tr>
+<tr>
+<td>enumerable</td>
+<td>当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。默认为 false。</td>
+</tr>
+<tr>
+<td>value</td>
+<td>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</td>
+</tr>
+<tr>
+<td>writable</td>
+<td>当且仅当该属性的 writable 键值为 true 时，属性的值，也就是上面的 value，才能被赋值运算符改变。默认为 false。</td>
+</tr>
+<tr>
+<td>get</td>
+<td>属性的 getter 函数，如果没有 getter，则为 undefined。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 this 对象（由于继承关系，这里的this并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。默认为 undefined。</td>
+</tr>
+<tr>
+<td>set</td>
+<td>属性的 setter 函数，如果没有 setter，则为 undefined。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 this 对象。</td>
+</tr>
+<tr>
+<td>默认为 undefined。</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">constructor</span>(<span class="params">options</span>)</span> &#123; </span><br><span class="line">  <span class="built_in">this</span>._data = options.data; </span><br><span class="line">  <span class="built_in">this</span>.observer(<span class="built_in">this</span>._data); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">observer</span>(<span class="params">value</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!value || <span class="keyword">typeof</span> value !== <span class="string">&quot;object&quot;</span>) &#123; <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="comment">//  对于data 逐个设置getter和setter</span></span><br><span class="line">     <span class="built_in">Object</span>.keys(value).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123; </span><br><span class="line">       <span class="built_in">this</span>.defineReactive(value, key, value[key]); </span><br><span class="line">       &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="function"><span class="title">defineReactive</span>(<span class="params">obj, key, val</span>)</span> &#123; </span><br><span class="line">      <span class="comment">//  </span></span><br><span class="line">       <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">         enumerable: <span class="literal">true</span> <span class="comment">/* 属性可枚举 */</span>, </span><br><span class="line">         configurable: <span class="literal">true</span> <span class="comment">/* 属性可被修改或删除 */</span>,</span><br><span class="line">          <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123; <span class="keyword">return</span> val; &#125;,</span><br><span class="line">          <span class="function"><span class="title">set</span>(<span class="params">newVal</span>)</span> &#123; </span><br><span class="line">            <span class="keyword">if</span> (newVal === val) <span class="keyword">return</span>;</span><br><span class="line">            <span class="built_in">this</span>.cb(newVal);</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>依赖收集与追踪</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20190819190253771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70" alt="avatar"></p>
+<p>在get中执行dep.depend()进行依赖绑定<br>在set中执行dep.notify()通知观察者进行视图更新<br>nextTick的异步更新策略<br>在响应式更新数据的过程中，如果一个数据的值在一段时间内频繁更新了很多次，会依次触发响应式setter-&gt;Dep-&gt;Watcher-&gt;update-&gt;patch,所以引入nextTick的异步更新策略，实现一个queue队列，会在下一个tick去执行一次上面的响应式更新操作，大大优化了性能。</p>
+<p>使用到nextTick 的场景：<br>$nextTick(callback)。这里的回调函数（callback）将在数据更新完成，视图更新完毕之后被调用。</p>
+<p>1.Vue生命周期的created()钩子函数进行的DOM操作一定要放在Vue.nextTick()的回调函数中.</p>
+<p>原因： created()钩子函数执行的时候DOM 其实并未进行任何渲染，而此时进行DOM操作无异于徒劳，所以此处一定要将DOM操作的js代码放进Vue.nextTick()的回调函数中。<br>2.在数据变化后要执行的某个操作，而这个操作【需要使用随数据改变而改变的DOM结构的时候】，这个操作都应该放进Vue.nextTick()的回调函数中。更新数据后，想要使用js对新的视图进行操作时<br>3.在使用某些第三方插件时 ，这些插件需要【dom动态变化后重新应用该插件】，这时候就需要使用$nextTick()来重新应用插件的方法。</p>
+<ol start="4">
+<li>编译<br>1 parse：（解析）利用正则将模板转换成抽象语法树（AST）；<br>2 optimize： （标记静态节点做优化）标记静态节点，以后update的时候，diff算法可以跳过静态节点<br>3 generate：（转成字符串）将抽象语法树（AST）转成字符串，供render去渲染DOM</li>
+</ol>
+<p>render function被渲染的时候，会对data对象进行数据读取，会触发getter函数，从而把data里面的属性进行依赖收集，依赖收集的目的是将这些属性放到观察者（Watcher）的观察队列中，一旦我们对data里面的属性进行修改时，就会触发setter函数，setter告诉观察者数据变化，需要重新渲染视图，观察者调用update来更新视图。</p>
+<p>在update的时候，会执行【patch】，将新旧VNode传进去，通过diff算法算出差异，局部更新视图，做到最优化。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:yeminshan@126.com">Yvoone</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/">https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yeminshan.github.io" target="_blank">珊珊的小本子</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/04/15/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端缓存</div></div></a></div><div class="next-post pull-right"><a href="/2020/04/12/Vuex/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vuex</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/03/29/Vue-Router/" title="Vue-Router"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-29</div><div class="title">Vue-Router</div></div></a></div><div><a href="/2020/04/12/Vuex/" title="Vuex"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-12</div><div class="title">Vuex</div></div></a></div><div><a href="/2020/04/12/vue-cli/" title="vue/cli"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-12</div><div class="title">vue/cli</div></div></a></div><div><a href="/2020/04/21/vue-插件封装/" title="vue 插件封装"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-21</div><div class="title">vue 插件封装</div></div></a></div><div><a href="/2020/04/17/vue单元测试/" title="vue单元测试"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-17</div><div class="title">vue单元测试</div></div></a></div><div><a href="/2020/04/11/vue搭建多页面应用/" title="vue搭建多页面应用"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-11</div><div class="title">vue搭建多页面应用</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Yvoone</div><div class="author-info__description">珊珊的愿望就是有吃不完的小鱼干，还有吃不完的猪肉干牛肉干。所以在没有那么多吃的之前在这里都记着，挣到钱钱后换成喜欢的小鱼干哈</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/14/%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%94%B5%E8%84%91/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/04/14/%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%94%B5%E8%84%91/" title="无题">无题</a><time datetime="2021-04-14T01:52:48.752Z" title="发表于 2021-04-14 09:52:48">2021-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/14/Untitled/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/04/14/Untitled/" title="无题">无题</a><time datetime="2021-04-14T01:52:48.746Z" title="发表于 2021-04-14 09:52:48">2021-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/28/%E5%88%9D%E5%98%97%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="初嘗微前端"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初嘗微前端"/></a><div class="content"><a class="title" href="/2020/12/28/%E5%88%9D%E5%98%97%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="初嘗微前端">初嘗微前端</a><time datetime="2020-12-28T08:35:59.000Z" title="发表于 2020-12-28 16:35:59">2020-12-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/13/promise/" title="promise"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="promise"/></a><div class="content"><a class="title" href="/2020/11/13/promise/" title="promise">promise</a><time datetime="2020-11-13T07:35:54.000Z" title="发表于 2020-11-13 15:35:54">2020-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/25/%E9%A3%9F%E7%94%A8nginx/" title="食用nginx"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="食用nginx"/></a><div class="content"><a class="title" href="/2020/09/25/%E9%A3%9F%E7%94%A8nginx/" title="食用nginx">食用nginx</a><time datetime="2020-09-25T02:41:16.000Z" title="发表于 2020-09-25 10:41:16">2020-09-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Yvoone</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

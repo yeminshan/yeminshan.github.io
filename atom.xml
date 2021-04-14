@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>珊珊的小本子</title>
+  <icon>https://www.gravatar.com/avatar/b5c247f59c4ff39dce2796b57d2cf6f1</icon>
+  <subtitle>一个记满小鱼干的小本本</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://yeminshan.github.io/"/>
+  <updated>2021-04-14T01:52:48.752Z</updated>
+  <id>https://yeminshan.github.io/</id>
+  
+  <author>
+    <name>Yvoone</name>
+    <email>yeminshan@126.com</email>
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://yeminshan.github.io/2021/04/14/%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%94%B5%E8%84%91/"/>
+    <id>https://yeminshan.github.io/2021/04/14/%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%94%B5%E8%84%91/</id>
+    <published>2021-04-14T01:52:48.752Z</published>
+    <updated>2021-04-14T01:52:48.752Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 小白学习用电脑</span><br><span class="line">date: 2020-08-20 15:41:02</span><br><span class="line">tags: []</span><br><span class="line">categories: []</span><br></pre></td></tr></table></figure><h3 id="window添加右键功能"><a href="#window添加右键功能" class="headerlink" title="window添加右键功能"></a>window添加右键功能</h3><ol><li>添加txt文件，并添加内容如下：</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">; Open files</span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\Open with VS Code]</span><br><span class="line">@&#x3D;&quot;Edit with VS Code&quot;</span><br><span class="line">&quot;Icon&quot;&#x3D;&quot;C:\\Users\\ymshan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe,0&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\Open with VS Code\command]</span><br><span class="line">@&#x3D;&quot;\&quot;C:\\Users\\ymshan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\&quot; \&quot;%1\&quot;&quot;</span><br><span class="line"></span><br><span class="line">; This will make it appear when you right click ON a folder</span><br><span class="line">; The &quot;Icon&quot; line can be removed if you don&#39;t want the icon to appear</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\vscode]</span><br><span class="line">@&#x3D;&quot;Open Folder as VS Code Project&quot;</span><br><span class="line">&quot;Icon&quot;&#x3D;&quot;\&quot;C:\\Users\\ymshan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\&quot;,0&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\vscode\command]</span><br><span class="line">@&#x3D;&quot;\&quot;C:\\Users\\ymshan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\&quot; \&quot;%1\&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">; This will make it appear when you right click INSIDE a folder</span><br><span class="line">; The &quot;Icon&quot; line can be removed if you don&#39;t want the icon to appear</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode]</span><br><span class="line">@&#x3D;&quot;Open Folder as VS Code Project&quot;</span><br><span class="line">&quot;Icon&quot;&#x3D;&quot;\&quot;C:\\Users\\ymshan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\&quot;,0&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode\command]</span><br><span class="line">@&#x3D;&quot;\&quot;C:\\Users\\ymshan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\&quot; \&quot;%V\&quot;&quot;</span><br></pre></td></tr></table></figure><p>其中：C:\Users\ymshan\AppData\Local\Programs\Microsoft VS Code\Code.exe为启用程序的路径</p><ol start="2"><li><p>文件保存后改为reg格式</p></li><li><p>执行即可。</p></li></ol><h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ol><li><p>win + r 输入 regdit 打开注册表注册表编辑器</p></li><li><p>寻找路径：计算机\HKEY_CLASSES_ROOT\Directory\shell\</p></li><li><p>即可看见刚刚添加的vscode注册表项</p></li><li><p>点击查看：<strong>其实可以直接在这里加</strong></p><p>名称： 默认   类型: REG _SZ   数据: Open With   VSCode</p></li></ol><p>​       名称：Icon   类型: REG _SZ   数据: “C:\Users\ymshan\AppData\Local\Programs\Microsoft VS Code\Code.exe”,0</p><h1 id="添加系统变量"><a href="#添加系统变量" class="headerlink" title="添加系统变量"></a>添加系统变量</h1><p>有点貌似添加全局变量</p><p>我的电脑–右键–属性–高级系统设置–环境变量</p><p>先添加系统变量。如JAVA_HOME：程序文件所在的目录</p><p>然后用户变量path追加新添加的系统变量,分号(半角;)做分割,双%引用添加的系统变量。如%JAVA_HOME%</p><h1 id="生成SSH"><a href="#生成SSH" class="headerlink" title="生成SSH"></a>生成SSH</h1><p> <a href="https://www.jianshu.com/p/259773014e03">生成ssh</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://yeminshan.github.io/2021/04/14/Untitled/"/>
+    <id>https://yeminshan.github.io/2021/04/14/Untitled/</id>
+    <published>2021-04-14T01:52:48.746Z</published>
+    <updated>2021-04-14T01:52:48.746Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>初嘗微前端</title>
+    <link href="https://yeminshan.github.io/2020/12/28/%E5%88%9D%E5%98%97%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
+    <id>https://yeminshan.github.io/2020/12/28/%E5%88%9D%E5%98%97%E5%BE%AE%E5%89%8D%E7%AB%AF/</id>
+    <published>2020-12-28T08:35:59.000Z</published>
+    <updated>2021-04-14T01:52:48.751Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现有的微前端解决方案：</p><ol><li><p>iframe</p><p>提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决<br>缺点</p></li></ol><p>主页面和 iframe 共享最大允许的 HTTP 链接数。<br>iframe 阻塞主页面加载。<br>浏览器的后退按钮无效<br>隔离性无法被突破，导致应用间上下文无法被共享 2. 服务端模板组合</p><p>通过 Nginx 服务器根据 url 路径动态设置要加载的模板：<br>优点</p><p>实现简单<br>技术栈独立<br>缺点</p><p>需要额外配置 Nginx<br>前后端分离不彻底</p><p>3.微前端框架 single-spa</p><p>single-spa 的实现原理并不难，从架构上来讲可以分为两部分：子应用和容器应用。</p><p>子应用与传统的单页应用的区别在于</p><ul><li>不需要 HTML 入口文件，</li><li>js 入口文件导出的模块，必须包括 bootstrap、mount 和 unmount 三个方法。</li></ul><p>容器应用主要负责注册应用，当 url 命中子应用的路由时激活并挂载子应用，或者当子应用不处于激活状态时，将子应用从页面中移除卸载。其核心方法有两个：</p><ul><li><code>registerApplication</code> 注册并下载子应用</li><li><code>start</code> 启动处于激活状态的子应用。</li></ul><p>优点</p><ul><li>纯前端解决方案</li><li>可以使用多种技术栈</li><li>完善的生态</li></ul><p>缺点</p><ul><li>上手成本高</li><li>需要改造现有应用</li><li>跨应用的联调变得复杂</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;现有的微前端解决方案：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;iframe&lt;/p&gt;
+&lt;p&gt;提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离
+      
+    
+    </summary>
+    
+    
+    
+      <category term="微前端" scheme="https://yeminshan.github.io/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="qiankun" scheme="https://yeminshan.github.io/tags/qiankun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>promise</title>
+    <link href="https://yeminshan.github.io/2020/11/13/promise/"/>
+    <id>https://yeminshan.github.io/2020/11/13/promise/</id>
+    <published>2020-11-13T07:35:54.000Z</published>
+    <updated>2021-04-14T01:52:48.748Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="es6" scheme="https://yeminshan.github.io/categories/es6/"/>
+    
+    
+      <category term="ES6" scheme="https://yeminshan.github.io/tags/ES6/"/>
+    
+      <category term="promise" scheme="https://yeminshan.github.io/tags/promise/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>食用nginx</title>
+    <link href="https://yeminshan.github.io/2020/09/25/%E9%A3%9F%E7%94%A8nginx/"/>
+    <id>https://yeminshan.github.io/2020/09/25/%E9%A3%9F%E7%94%A8nginx/</id>
+    <published>2020-09-25T02:41:16.000Z</published>
+    <updated>2021-04-14T01:52:48.755Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vscode</title>
+    <link href="https://yeminshan.github.io/2020/08/04/vscode/"/>
+    <id>https://yeminshan.github.io/2020/08/04/vscode/</id>
+    <published>2020-08-04T06:00:57.000Z</published>
+    <updated>2021-04-14T01:52:48.748Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>语言切换<br>插件下载 chinese language pack 安装重启即可切换成中文，<br>ctl + shift + p （mac command + shift + p）输入 configure display language，进行切换。</p></li><li><p>常用快捷键<br>ctl + shift + p 命令面板<br>ctl + p 快速打开 （文件）<br>ctl + shift + n 新建窗口<br>command + option + l 格式化</p></li><li><p>vue 文件使用大纲非常清晰</p></li><li><p>集中管理 todo，使用 todo tree 插件</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;语言切换&lt;br&gt;插件下载 chinese language pack 安装重启即可切换成中文，&lt;br&gt;ctl + shift + p （mac command + shift + p）输入 configure display language，进行切换。&lt;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="vscode" scheme="https://yeminshan.github.io/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>功能集合</title>
+    <link href="https://yeminshan.github.io/2020/07/20/%E5%8A%9F%E8%83%BD%E9%9B%86%E5%90%88/"/>
+    <id>https://yeminshan.github.io/2020/07/20/%E5%8A%9F%E8%83%BD%E9%9B%86%E5%90%88/</id>
+    <published>2020-07-20T02:28:09.000Z</published>
+    <updated>2021-04-14T01:52:48.752Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><ol><li><p><a href="文件链接" download='下载文件名'></a></p></li><li><iframe src="downloadUrl" ></li><li><p>window.open(downloadUrl, “_blank”)</p></li><li><p>ajax 下载</p></li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先请求音频的链接,再把返回值转换成二进制,再根据他二进制对象生成新链接,再创建a标签,点击a标签</span></span><br><span class="line"><span class="comment">//这是vue里面的写的普通页面也差不多</span></span><br><span class="line">    <span class="built_in">this</span>.$axios(&#123;</span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    url: row.src,</span><br><span class="line">    responseType: <span class="string">&#x27;blob&#x27;</span>  <span class="comment">//这个不能少,让response二进制形式,如果你按照网上教程不设置这个将返回值进行BLOB([])进行处理可能会出现解析错误</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> href = URL.createObjectURL(response.data); <span class="comment">//根据二进制对象创造新的链接</span></span><br><span class="line">    <span class="keyword">const</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    a.setAttribute(<span class="string">&#x27;href&#x27;</span>, href);</span><br><span class="line">    a.setAttribute(<span class="string">&#x27;download&#x27;</span>, row.title);</span><br><span class="line">    a.click();</span><br><span class="line">    URL.revokeObjectURL(href);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  getObjectURL (file) &#123;</span></span><br><span class="line"><span class="comment">//       let url = null;</span></span><br><span class="line"><span class="comment">//       if (window.createObjectURL != undefined) &#123; // basic</span></span><br><span class="line"><span class="comment">//         url = window.createObjectURL(file);</span></span><br><span class="line"><span class="comment">//       &#125; else if (window.webkitURL != undefined) &#123; // webkit or chrome</span></span><br><span class="line"><span class="comment">//         try &#123;</span></span><br><span class="line"><span class="comment">//           url = window.webkitURL.createObjectURL(file);</span></span><br><span class="line"><span class="comment">//         &#125; catch (error) &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//       &#125; else if (window.URL != undefined) &#123; // mozilla(firefox)</span></span><br><span class="line"><span class="comment">//         try &#123;</span></span><br><span class="line"><span class="comment">//           url = window.URL.createObjectURL(file);</span></span><br><span class="line"><span class="comment">//         &#125; catch (error) &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//       &#125;</span></span><br><span class="line"><span class="comment">//       return url;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p><a href="https://www.jianshu.com/p/bb48b64db783">参考</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;文件链接&quot; download=&#39;下载文件名&#39;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;iframe sr
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>预览文件</title>
+    <link href="https://yeminshan.github.io/2020/07/17/%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6/"/>
+    <id>https://yeminshan.github.io/2020/07/17/%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6/</id>
+    <published>2020-07-17T01:26:33.000Z</published>
+    <updated>2021-04-14T01:52:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>iframe -pdf</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe</span><br><span class="line">   :src&#x3D;&quot;url&quot;</span><br><span class="line">   type&#x3D;&quot;application&#x2F;x-google-chrome-pdf&quot;</span><br><span class="line">   width&#x3D;&quot;100%&quot;</span><br><span class="line">   height&#x3D;&quot;100%&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure><p>浏览器基于安全禁止了访问本地文件,并且 src 如果是文件流， 会直接下载下来，不是预览</p><ol start="2"><li>vue-pdf</li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install --save vue-pdf</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pdf <span class="keyword">from</span> <span class="string">&#x27;vue-pdf&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pdf</span><br><span class="line">  :src&#x3D;&quot;src&quot; &#x2F;&#x2F; src需要展示的PDF地址</span><br><span class="line">  :page&#x3D;&quot;currentPage&quot; &#x2F;&#x2F; 当前展示的PDF页码</span><br><span class="line">  @num-pages&#x3D;&quot;pageCount&#x3D;$event&quot; &#x2F;&#x2F; PDF文件总页码</span><br><span class="line">  @page-loaded&#x3D;&quot;currentPage&#x3D;$event&quot; &#x2F;&#x2F; 一开始加载的页面</span><br><span class="line">  @loaded&#x3D;&quot;loadPdfHandler&quot;&gt; &#x2F;&#x2F; 加载事件</span><br><span class="line">&lt;&#x2F;pdf&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;iframe -pdf&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span clas
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>websocket</title>
+    <link href="https://yeminshan.github.io/2020/07/09/websocket/"/>
+    <id>https://yeminshan.github.io/2020/07/09/websocket/</id>
+    <published>2020-07-09T07:41:02.000Z</published>
+    <updated>2021-04-14T01:52:48.751Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Websocket-是什么？"><a href="#Websocket-是什么？" class="headerlink" title="Websocket 是什么？"></a>Websocket 是什么？</h1><p>WebSocket协议是html5的一种通信协议，该协议兼容我们常用的浏览器</p><p>WebSocket 是一种在单个 TCP 连接上进行全双工通信的协议。<br>WebSocket 通信协议 诞生于 2011 年，WebSocket API 也被 W3C 定为标准。<br>Websocket 允许服务器向客户端推送数据，并且只需要完成一次握手，就能持续的进行双向数据传输<br> WS协议和WSS协议两个均是WebSocket协议的SCHEM，两者一个是非安全的，一个是安全的。也是统一的资源标志符。</p><p>WSS表示在TLS之上的WebSocket。WS一般默认是80端口，而WSS默认是443端口，大多数网站用的就是80和433端口</p><p>websocket分为握手和数据传输阶段，即进行了HTTP握手 + 双工的TCP连接。</p><h4 id="1-客户端和服务器如何完成握手"><a href="#1-客户端和服务器如何完成握手" class="headerlink" title="1.客户端和服务器如何完成握手"></a>1.客户端和服务器如何完成握手</h4><p>Websocket 通过 HTTP/1.1 协议的 101 状态码进行握手。<br>为了创建 Websocket 连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为“握手”（handshaking）。</p><p><img src="C:%5CUsers%5Cymshan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200821160238248.png" alt="image-20200821160238248"></p><h4 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h4><h5 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1. 构造函数"></a>1. 构造函数</h5><p>WebSocket 对象，用于创建和管理Websocket 连接</p><p>WebSocket(url [, protocols])   返回一个WebSocket 对象</p><h5 id="2-WenSocket-readyState"><a href="#2-WenSocket-readyState" class="headerlink" title="2. WenSocket.readyState"></a>2. WenSocket.readyState</h5><p>实例对象的当前状态</p><table><thead><tr><th>常量</th><th>value</th><th>意义</th></tr></thead><tbody><tr><td>WebSocket.CONNECTING</td><td>0</td><td>正在连接</td></tr><tr><td>WebSocket.OPEN</td><td>1</td><td>连接成功</td></tr><tr><td>WebSocket.CLOSING</td><td>2</td><td>正在关闭</td></tr><tr><td>WebSocket.CLOSED</td><td>3</td><td>已经关闭 || 连接失败</td></tr></tbody></table><h5 id="3-属性"><a href="#3-属性" class="headerlink" title="3. 属性"></a>3. 属性</h5><table><thead><tr><th>属性名</th><th>意义</th><th></th></tr></thead><tbody><tr><td>url</td><td>绝对路径</td><td></td></tr><tr><td>readyState</td><td>链接状态</td><td></td></tr><tr><td>onopen</td><td>连接成功的回调</td><td></td></tr><tr><td>onmessage</td><td>从服务器接受到信息的回调</td><td></td></tr><tr><td>onerror</td><td>连接失败的回调</td><td></td></tr><tr><td>onclose</td><td>关闭连接的回调</td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table><h5 id="4-方法"><a href="#4-方法" class="headerlink" title="4. 方法"></a>4. 方法</h5><table><thead><tr><th>方法名</th><th>意义</th><th>备注</th></tr></thead><tbody><tr><td>WebSocket.close( [ code  [ ,   reason ]  ] )</td><td>关闭当前连接</td><td></td></tr><tr><td>WebSocket.send( data )</td><td>传输数据</td><td></td></tr></tbody></table><h5 id="5-事件"><a href="#5-事件" class="headerlink" title="5. 事件"></a>5. 事件</h5><p>通过addEventListener 监听，也可以在对象对应属性设置监听</p><table><thead><tr><th>事件</th><th>意义</th><th></th></tr></thead><tbody><tr><td>close</td><td>连接被关闭时触发</td><td></td></tr><tr><td>error</td><td>连接因错误而关闭时触发，例如无法发送数据时</td><td></td></tr><tr><td>message</td><td>收到数据时触发</td><td></td></tr><tr><td>open</td><td>连接成功时触发</td><td></td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:8080&#x27;</span>);</span><br><span class="line">ws.onopen = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  ws.send(<span class="string">&#x27;Hello Server!&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">ws.addEventListener(<span class="string">&quot;close&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> code = event.code;</span><br><span class="line">  <span class="keyword">var</span> reason = event.reason;</span><br><span class="line">  <span class="keyword">var</span> wasClean = event.wasClean;</span><br><span class="line">  <span class="comment">// handle close event</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>· 即时聊天通信</p><p>· 多玩家游戏</p><p>· 在线协同编辑/编辑</p><p>· 实时数据流的拉取与推送</p><p>· 体育/游戏实况</p><p>· 实时地图位置</p><p>参考：<br><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">阮老师资料</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Websocket-是什么？&quot;&gt;&lt;a href=&quot;#Websocket-是什么？&quot; class=&quot;headerlink&quot; title=&quot;Websocket 是什么？&quot;&gt;&lt;/a&gt;Websocket 是什么？&lt;/h1&gt;&lt;p&gt;WebSocket协议是html5的一种通信
+      
+    
+    </summary>
+    
+    
+      <category term="websocket" scheme="https://yeminshan.github.io/categories/websocket/"/>
+    
+    
+      <category term="websocket" scheme="https://yeminshan.github.io/tags/websocket/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>防抖和节流</title>
+    <link href="https://yeminshan.github.io/2020/07/07/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"/>
+    <id>https://yeminshan.github.io/2020/07/07/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</id>
+    <published>2020-07-07T01:24:26.000Z</published>
+    <updated>2021-04-14T01:52:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<p>防抖和节流这两个针对的都是函数，都是为了限制函数的执行次数，只是应用场景不一样，实现方式也不同。而这里的函数，通常是事件的响应函数。</p><h1 id="什么是防抖-debounce"><a href="#什么是防抖-debounce" class="headerlink" title="什么是防抖(debounce)"></a>什么是防抖(debounce)</h1><p>防抖，是将一段时间内的函数调用视为同一”信号”，多次调用只是发生了”抖动”，应该被无视，停止调用后函数被真正的执行一次。 一般会给一个阀值表示”抖动”结束，如 1s 内函数不被触发。<br>去抖动，策略是当事件被触发时，设定一个周期延迟执行动作，<strong><u>若期间又被触发，则重新设定周期</u></strong>，直到周期结束，执行动作。</p><p><img src="https://img-blog.csdn.net/20180705005109564?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1cGlhbjE5ODk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/7" alt="策略示意图"></p><p>前缘 debounce，即执行动作在前，然后设定周期，周期内有事件被触发，不执行动作，且周期重新设定。</p><p><img src="https://img-blog.csdn.net/20180705005639201?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1cGlhbjE5ODk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="前缘debounce"></p><p><strong>区别：执行事件的时机</strong></p><h1 id="什么是节流-throttling"><a href="#什么是节流-throttling" class="headerlink" title="什么是节流(throttling)"></a>什么是节流(throttling)</h1><p>节流，是限制函数过于频繁地执行，根据时间、次数等降低函数执行的频次。节流并不是断流，函数还是会多次执行，只是执行次数要降低。</p><p>节流的策略是：固定周期内，只执行一次动作，若有新事件触发，不执行。周期结束后，又有事件触发，开始新的周期。 节流策略也分前缘和延迟两种。与 debounce 类似，延迟是指 周期结束后执行动作，前缘是指执行动作后再开始周期。</p><p><img src="https://img-blog.csdn.net/20180705012049136?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1cGlhbjE5ODk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="节流示意图"></p><p><img src="https://img-blog.csdn.net/20180705005639201?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1cGlhbjE5ODk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="前缘throttling"></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单示例</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout = <span class="literal">null</span>; <span class="comment">//定义一个定时器</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timeout !== <span class="literal">null</span>)</span><br><span class="line">      <span class="comment">// ！</span></span><br><span class="line">      <span class="built_in">clearTimeout</span>(timeout); <span class="comment">//清除这个定时器</span></span><br><span class="line">    timeout = <span class="built_in">setTimeout</span>(fn, wait);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Math</span>.random());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 滚动事件</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;scroll&quot;</span>, debounce(handle, <span class="number">1000</span>));</span><br></pre></td></tr></table></figure><h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><p><img src="https://pics0.baidu.com/feed/ac345982b2b7d0a2d84acabf8034200f4a369a77.png?token=144594ffdcf72be54883f4d7b7d4ab43&s=8EAC5D22818C4CE8465540C40300D0B2" alt="防抖和节流对比图"></p><p>在事件持续触发的情况下， 防抖是在某段时间内只执行一下， 而节流是根据一定的时间间隔执行。</p><p>参考：</p><p><a href="https://blog.csdn.net/hupian1989/article/details/80920324">csdn</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;防抖和节流这两个针对的都是函数，都是为了限制函数的执行次数，只是应用场景不一样，实现方式也不同。而这里的函数，通常是事件的响应函数。&lt;/p&gt;
+&lt;h1 id=&quot;什么是防抖-debounce&quot;&gt;&lt;a href=&quot;#什么是防抖-debounce&quot; class=&quot;headerlin
+      
+    
+    </summary>
+    
+    
+      <category term="性能优化" scheme="https://yeminshan.github.io/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="防抖" scheme="https://yeminshan.github.io/tags/%E9%98%B2%E6%8A%96/"/>
+    
+      <category term="节流" scheme="https://yeminshan.github.io/tags/%E8%8A%82%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>理财学习</title>
+    <link href="https://yeminshan.github.io/2020/06/15/%E7%90%86%E8%B4%A2%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://yeminshan.github.io/2020/06/15/%E7%90%86%E8%B4%A2%E5%AD%A6%E4%B9%A0/</id>
+    <published>2020-06-15T13:49:45.000Z</published>
+    <updated>2021-04-14T01:52:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>思想决定行为 行为养成习惯 习惯决定命运</p><h1 id="关键词汇"><a href="#关键词汇" class="headerlink" title="关键词汇"></a>关键词汇</h1><ol><li>财务自由<br>家庭非工资收入 &gt; 正常的生活总支出<br>非工资收入： 股息、房租、REITs 分行、股权</li></ol><p>实现财务自由的过程就是将工资收入转为投资收入的过程</p><ol start="2"><li><p>生钱资产<br>能持续给你带来静现金流入的东西<br>生钱资产越多，非工资收入越多</p></li><li><p>耗钱资产<br>能持续给你带来静现金流出的东西</p><p>如：已实现财务自由的人通过生钱资产维持耗钱资产</p></li><li><p>资产<br>拥有或控制的能够以货币计价的东西</p></li></ol><p>根据现金流流向不同分为： 生钱资产、耗钱资产、其他资产</p><p>严格控制耗钱资产的比例，将耗钱资产和其他资产转化为生钱资产</p><ol start="5"><li>财商<br>识别生钱资产、耗钱资产、其他资产并获得生钱资产的能力</li><li>净现金流</li></ol><p>某东西在一段时间内发生的现金流入和流出的差额<br>现金流入 - 现金流出 为正 为负 决定其为生钱资产还是耗钱资产</p><ol start="7"><li><p>负债<br>借来的未来需要偿还的东西<br>如： 房贷、车贷、消费贷</p><p>负债 购买生钱资产为 好负债 （生钱资产带来的现金流入能够覆盖负债带来的本息支出）<br>负债 购买耗钱资产为 坏负债</p><p>分辨好负债与好负债，调整比例</p></li><li><p>财务报表<br>能反应公司、家庭、个人的财务健康状况</p><p>财务报表分为： 资产负债表、损益表、现金流量表</p></li><li><p>收入<br>现金收入： 工资、 股息、房租、公司股权分红 ，有较强的确定性，是财务自由的重点<br>和 账面收入： 股票、房子上涨带来的账面收入，较强的不确定性</p></li><li><p>支出<br>支出减少你的钱儿增加别人的钱</p></li></ol><p>支出分为好支出： 能够带来更多收入的支出 如： 购买生钱资产<br>坏支出 如购买耗钱资产</p><ol start="11"><li>利率<br>资金使用的成本</li></ol><p>爸妈的资金： 成本一般为 0<br>银行资金： 成本相对比较低<br>民间借贷： 成本为银行的数倍<br>高利贷</p><ol start="12"><li>利息</li></ol><p>利息 = 本金 * 利率</p><p>利息收入是投资收入的一种，收益率一般比较低</p><ol start="13"><li><p>股息<br>上市公司给股票投资者的现金分红<br>公司利润好就分得多，，亏损则不分</p><p>好公司每年连续分红<br>股息是财务自由的主要收入之一</p></li><li><p>REITs 分红收入<br>持有 REITs 定期获得的收入</p><p>美国 REITs 每季度或没有分红一次<br>香港 REITS 每半年一次</p><p>和股息不同： 法律强制 REITs 每年把不低于 90%的额应税收入分配给投资者<br>REITS 可以看成房租收入：投资 REITs 间接投资房地产</p></li><li><p>房租收入<br>把房子租给别人获得的收入</p></li></ol><p>净租金收入 = 房租收入 - 房子发生的总支出</p><ol start="16"><li>账面收益</li></ol><p>资产市场价大于买入成本价</p><ol start="17"><li><p>投资<br>根据资金计划投入资金买卖生钱资产的行为</p></li><li><p>投资计划<br>包括： 投资目标、投资期限、投资金额、投资工具的选择、买入标准、卖出标准等等<br>是否有投资计划是投资和投机的关键区别之一。</p></li><li><p>投资者<br>根据资金计划投入资金买卖生钱资产的人</p></li><li><p>投机<br>投入资金赚差价的行为<br>投机 = 赌博</p></li><li><p>投机者<br>投入资金赚差价的人</p><p>炒股的人、 炒房的人与赌马的人没有区别，投机者是赌徒在投资领域的专业称呼</p></li><li><p>炒股 让钱越来越少的行为</p></li><li><p>炒房 让钱越来越少的行为</p></li><li><p>企业家<br>成功创造了一家有强大系统公司的人</p></li><li><p>有钱人<br>资产规模大的人</p></li><li><p>富人<br>生钱资产占总资产比例大于 80%的人</p></li><li><p>穷人<br>资产规模很小或者没有资产的人</p></li><li><p>有钱的穷人<br>资产规模大但生钱资产占比小于 30%的人</p></li><li><p>没钱的富人<br>掌握实现财务自由技能但是暂时还没有钱的人</p></li><li><p>风险<br>收益的不确定性和本金损失的可能性。风险主要是指不确定性<br>投机有风险，投资无风险。<br>投资本无风险，分不清生钱资产和耗钱资产的人才有风险的？？？</p></li><li><p>货币<br>通常被叫做钱，是交易的媒介。<br>现代货币基本都是新一货币，也叫法币。<br>信用货币和法币比钱更能表达货币的内涵。<br>货币的本质是央行发行的债券，他是央行的负债。（央行的资产负债表）</p><p>货币是政府的负债，负债之所以 有价值，是依靠政府的信用，政府有信用，货币就有价值。<br>政府的信用靠税收来保证，也就死靠财政来保障。<br>税收增长的速度远低于货币或者是债务增长的速度。货币就可能变成</p><p>没有内在价值的货币成为劣币</p><p>生钱资产称为良币</p><p>经济学有个规律： 劣币驱逐良币（同时存在两种货币， 良币会被少数人保存起来退出市场）</p></li><li><p>外币<br>外国货币。指本国货币以外的其他国家地区的货币 （美元，欧元，日元，英镑，瑞士法郎、澳元、加元、人民币）<br>比较强的安全性和稳定性，世界范围内认可度比较高</p></li><li><p>汇率<br>一种货币换另一种货币的比率<br>也是一种货币购买另一种货币的价格</p><p>汇率长期是波动的</p></li><li><p>时间<br>每个人最重要的资源，也是最公平的资源</p><p>财务自由的目的就是获得更多的可自由支配时间<br>财务自由不是财富而是重点是时间<br>社会中创造的所有价值归根结底都是时间价值</p></li><li><p>复利<br>在拿到利息后继续把利息投资，就是俗称利滚利<br>被称为世界第八大奇迹，复利最能体现时间的价值</p></li></ol><p>计算公式 S = p*（1+ i） n 次方</p><p>学习也是复利效应。坚持学习必能看到结果。</p><ol start="36"><li><p>有价证券<br>证明持有人拥有某种收益权力的凭证<br>比如： 股票是有价证券的一种，持有股票的人拥有上市公司的部分所有权<br>债券。</p></li><li><p>股票<br>股份公司发行的所有权凭证<br>比如参加股东大会，投票表决，参与公司重大决策，收取股息等。</p></li><li><p>REITs<br>房地产投资信托基金<br>是一种房地产资产证券化的工具</p><p>房地产投资门槛高，流动性差，交易成本高，不适合大部分投资者投资</p><p>REITs 本质还是房地产，投资者持有信托基金，信托基金持有房地产，持有等于间接持有房地产</p><p>REITs 大概 90%左右的收入来自房地产</p></li><li><p>债券<br>标准化的借条<br>借款人主要是政府、银行、大公司、风险和收益很小</p></li><li><p>抵押贷款<br>把资产抵押给别人向别人借钱，如不能偿还，别人有处置资产的权力</p></li><li><p>企业<br>以盈利为目的法人或者非法人组织</p><p>法人： 相当于你在法律层面上复制了一个虚构的你，它可以帮你行使权力和承担责任（民事责任，刑事责任不能承担）。</p><p>法人主要包括有限责任公司和股份有限公司。<br>非法人主要包括个人独资企业，合伙企业，企业的分支机构（分公司，办事处，代表处）等等</p><p>非法人不能独立承担民事责任，也就是不能隔离你的风险<br>非法人有税收上的优惠</p><p>至于选择法人实体还是非法人实体，要看自己的需求<br>可以组合运用实现风险隔离，税收筹划或者是其他特殊目的</p></li><li><p>公司<br>以营业为目的的法人企业<br>要想要更快的实现财务自由，一定要用好公司</p><p>公司股权的分红收入也是实现财务自由的主要收入之一</p></li><li><p>股市<br>股票集中交易的市场</p></li></ol><p>合法的把投机者的钱变成投资者，上市公司和政府的钱的地方</p><p>投资者赚取股利和价差： 上市公司可以增发获利， 政府获得税收</p><ol start="44"><li><p>楼市<br>房地产交易的市场<br>合法的把投机者的钱变成投资者，房产中介，银行和政府的钱的地方<br>投资者获得房租和价差，房产中介或得佣金， 银行获得利息，政府获得税收</p></li><li><p>税收<br>政府凭借权力强行征收的钱，保护费。呵呵呵<br>政府可以用税收的手段鼓励和抑制某种投资行为。</p><p>聪明的投资者会理利用政府的税收优惠政策为自己合法的增加收入</p></li></ol><h1 id="gt-购买生钱资产-创造生钱资产"><a href="#gt-购买生钱资产-创造生钱资产" class="headerlink" title="&gt;购买生钱资产 / 创造生钱资产"></a>&gt;购买生钱资产 / 创造生钱资产</h1><h1 id="通过财务报表读懂家庭财务状况"><a href="#通过财务报表读懂家庭财务状况" class="headerlink" title="通过财务报表读懂家庭财务状况"></a>通过财务报表读懂家庭财务状况</h1><p>1.分为 财务危机、财务安全、财务自由。<br>以 净现金流 的正负为标准。<br>净现金流 是决定资产价值的核心因素。</p><p>将负债划分为<br>生钱资产形成的负债<br>耗钱资产形成的负债<br>其他资产形成的负债<br>日常生活形成的负债</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;思想决定行为 行为养成习惯 习惯决定命运&lt;/p&gt;
+&lt;h1 id=&quot;关键词汇&quot;&gt;&lt;a href=&quot;#关键词汇&quot; class=&quot;headerlink&quot; title=&quot;关键词汇&quot;&gt;&lt;/a&gt;关键词汇&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;财务自由&lt;br&gt;家庭非工资收入 &amp;gt; 正常的生活总支
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue-i18n</title>
+    <link href="https://yeminshan.github.io/2020/06/08/vue-i18n/"/>
+    <id>https://yeminshan.github.io/2020/06/08/vue-i18n/</id>
+    <published>2020-06-08T02:34:17.000Z</published>
+    <updated>2021-04-14T01:52:48.749Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>import Vue from ‘vue’<br>import VueI18n from ‘vue-i18n’</p><p>Vue.use(VueI18n)</p><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>const i18n = new VueI18n({<br>locale: ‘CN’, // 语言标识<br>messages : {<br>en: {<br>message: {<br>hello: ‘hello world’<br>}<br>},<br>cn: {<br>message: {<br>hello: ‘你好、世界’<br>}<br>}<br>}<br>})</p><p>/<em>———使用语言包———–</em>/<br>const i18n = new VueI18n({<br>locale: ‘zh’, // 语言标识<br>//this.$i18n.locale // 通过切换 locale 的值来实现语言切换<br>messages: {<br>‘zh’: require(‘./common/lang/zh’), // 中文语言包<br>‘en’: require(‘./common/lang/en’) // 英文语言包<br>}<br>})</p><p>/_ eslint-disable no-new _/<br>new Vue({<br>el: ‘#app’,<br>i18n, //挂载到实例，一定得在这个位置，而不是 comonents 中<br>template: ‘<App/>‘,<br>components: {<br>App<br>}<br>})</p><p>上面的代码正式将 vue-i18n 引入 vue 项目中，创建一个 i18n 实例对象，方便全局调用。我们通过 this.$i18n.locale 来进行语言的切换。</p><p>在组件的 template 中，调用$t()方法<br>在组件的script中，调用this.$i18n.t()方法</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h1&gt;&lt;p&gt;import Vue from ‘vue’&lt;br&gt;import VueI18n from ‘vue-i18n’&lt;/p&gt;
+&lt;p&gt;Vue.use
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MVVM</title>
+    <link href="https://yeminshan.github.io/2020/04/26/MVVM/"/>
+    <id>https://yeminshan.github.io/2020/04/26/MVVM/</id>
+    <published>2020-04-26T13:37:27.000Z</published>
+    <updated>2021-04-14T01:52:48.746Z</updated>
+    
+    <content type="html"><![CDATA[<p>什么是MVVM<br>MVVM 是MOdle-view-viewModal的简写他是一种设计思想。Modle是数据模型，负责数据的逻辑；view是视图，负责将数据模型转化成UI展现出来；viewModel是同步model和view的对象，是两者的桥梁纽带，负责监听模型数据的改变和控制视图行为、处理用户交互。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;什么是MVVM&lt;br&gt;MVVM 是MOdle-view-viewModal的简写他是一种设计思想。Modle是数据模型，负责数据的逻辑；view是视图，负责将数据模型转化成UI展现出来；viewModel是同步model和view的对象，是两者的桥梁纽带，负责监听模型数据的
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue 插件封装</title>
+    <link href="https://yeminshan.github.io/2020/04/21/vue-%E6%8F%92%E4%BB%B6%E5%B0%81%E8%A3%85/"/>
+    <id>https://yeminshan.github.io/2020/04/21/vue-%E6%8F%92%E4%BB%B6%E5%B0%81%E8%A3%85/</id>
+    <published>2020-04-21T08:08:02.000Z</published>
+    <updated>2021-04-14T01:52:48.749Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><ol><li>使用必须在 new Vue 前，引入插件并使用 Vue.use(插件名， { // 参数})</li><li>开发封装：</li></ol><p>必须暴露 install 方法</p><p>必须暴露出去 export default XXX</p><h2 id="开发插件的几种方法"><a href="#开发插件的几种方法" class="headerlink" title="开发插件的几种方法"></a>开发插件的几种方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @params:Vue Vue构造器</span></span><br><span class="line"><span class="comment">// @params：options &#123;Object&#125; 对象-可选参数</span></span><br><span class="line"></span><br><span class="line">插件名.install = <span class="function"><span class="keyword">function</span>(<span class="params">Vue, options</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 0. 全局注册组件 (组件名，组件)</span></span><br><span class="line">      Vue.component(<span class="string">&#x27;PageGrid&#x27;</span>, PageGrid);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 添加【全局方法或属性】 vue-custom-element 【 Vue.全局方法名| 属性名】</span></span><br><span class="line">      Vue.myGlobalMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 逻辑...</span></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 添加全局资源 指令/过滤器/过渡等，如 vue-touch</span></span><br><span class="line">      Vue.directive(<span class="string">&#x27;my-directive&#x27;</span>, &#123;</span><br><span class="line">        bind (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">          <span class="comment">// 逻辑...</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 注入组件选项   通过全局 mixin方法添加一些组件选项，如: vuex 【某个钩子 mixins，一些内容 】</span></span><br><span class="line">      Vue.mixin(&#123;</span><br><span class="line">        created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">// 逻辑...</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 添加【实例方法】   通过把它们添加到 Vue.prototype.方法名(一般用$区分开) 上实现</span></span><br><span class="line">      Vue.prototype.$myMethod = <span class="function"><span class="keyword">function</span> (<span class="params">methodOptions</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 逻辑...</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>Eg</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">install</span>(<span class="params">Vue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (install.installed) <span class="keyword">return</span>;</span><br><span class="line">  Vue.component(<span class="string">&#x27;Grid&#x27;</span>, Grid)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  install</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简述&quot;&gt;&lt;a href=&quot;#简述&quot; class=&quot;headerlink&quot; title=&quot;简述&quot;&gt;&lt;/a&gt;简述&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;使用必须在 new Vue 前，引入插件并使用 Vue.use(插件名， { // 参数})&lt;/li&gt;
+&lt;li&gt;开发封装：&lt;/l
+      
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="https://yeminshan.github.io/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="https://yeminshan.github.io/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阅读elemenyt el-tree 源码</title>
+    <link href="https://yeminshan.github.io/2020/04/21/%E9%98%85%E8%AF%BBelemenyt-el-tree-%E6%BA%90%E7%A0%81/"/>
+    <id>https://yeminshan.github.io/2020/04/21/%E9%98%85%E8%AF%BBelemenyt-el-tree-%E6%BA%90%E7%A0%81/</id>
+    <published>2020-04-21T08:07:29.000Z</published>
+    <updated>2021-04-14T01:52:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="el-tree-入口"><a href="#el-tree-入口" class="headerlink" title="el-tree 入口"></a><a href="https://github.com/ElemeFE/element/blob/dev/packages/tree/index.js">el-tree 入口</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Tree <span class="keyword">from</span> <span class="string">&#x27;./src/tree.vue&#x27;</span>;</span><br><span class="line"><span class="comment">/* 这里使用的是全局注册组件的方法开发的插件 */</span></span><br><span class="line">Tree.install = <span class="function"><span class="keyword">function</span>(<span class="params">Vue</span>) </span>&#123;</span><br><span class="line">  Vue.component(Tree.name, Tree);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Tree;</span><br></pre></td></tr></table></figure><h3 id="tree-vue"><a href="#tree-vue" class="headerlink" title="tree.vue"></a><a href="https://github.com/ElemeFE/element/blob/dev/packages/tree/src/tree.vue#L41">tree.vue</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> TreeStore <span class="keyword">from</span> <span class="string">&#x27;./model/tree-store&#x27;</span>; </span><br><span class="line"><span class="keyword">import</span> &#123; getNodeKey, findNearestComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./model/util&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> ElTreeNode <span class="keyword">from</span> <span class="string">&#x27;./tree-node.vue&#x27;</span>; <span class="comment">// components: &#123; ElTreeNode &#125;,</span></span><br><span class="line"><span class="keyword">import</span> &#123;t&#125; <span class="keyword">from</span> <span class="string">&#x27;element-ui/src/locale&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> emitter <span class="keyword">from</span> <span class="string">&#x27;element-ui/src/mixins/emitter&#x27;</span>; <span class="comment">// mixins: [emitter],</span></span><br><span class="line"><span class="keyword">import</span> &#123; addClass, removeClass &#125; <span class="keyword">from</span> <span class="string">&#x27;element-ui/src/utils/dom&#x27;</span>;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;el-tree-入口&quot;&gt;&lt;a href=&quot;#el-tree-入口&quot; class=&quot;headerlink&quot; title=&quot;el-tree 入口&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/ElemeFE/element/blob/dev/pac
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue-ssr</title>
+    <link href="https://yeminshan.github.io/2020/04/21/vue-ssr/"/>
+    <id>https://yeminshan.github.io/2020/04/21/vue-ssr/</id>
+    <published>2020-04-21T07:10:56.000Z</published>
+    <updated>2021-04-14T01:52:48.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>ssr 服务端渲染</p><p>能很好的解决首页白屏的问题</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;ssr 服务端渲染&lt;/p&gt;
+&lt;p&gt;能很好的解决首页白屏的问题&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue单元测试</title>
+    <link href="https://yeminshan.github.io/2020/04/17/vue%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    <id>https://yeminshan.github.io/2020/04/17/vue%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
+    <published>2020-04-17T02:02:22.000Z</published>
+    <updated>2021-04-14T01:52:48.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>1. </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1. &lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+      <category term="vue" scheme="https://yeminshan.github.io/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>跨域</title>
+    <link href="https://yeminshan.github.io/2020/04/15/%E8%B7%A8%E5%9F%9F/"/>
+    <id>https://yeminshan.github.io/2020/04/15/%E8%B7%A8%E5%9F%9F/</id>
+    <published>2020-04-15T03:41:50.000Z</published>
+    <updated>2021-04-14T01:52:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">广义的跨域：</span><br><span class="line">1. 资源跳转： A链接、重定向、表单提交</span><br><span class="line">2. 资源嵌入： &lt;link&gt;、&lt;script&gt;、&lt;img&gt;、&lt;frame&gt;等带src的dom标签，还有样式中background:url()、@font-face()等文件外链</span><br><span class="line">3. 脚本请求： js发起的ajax请求、dom和js对象的跨域操作等</span><br></pre></td></tr></table></figure><ol><li>需要跨域的原因</li></ol><p>跨域问题其实就是浏览器的同源策略所导致的。</p><p>「同源策略」是一个重要的安全策略，限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。不同源的客户端脚本在没有明确授权的情况下，不能读写对方的资源。</p><p>同源策略限制以下几种行为：</p><p>1.Cookie、LocalStorage 和 IndexDB 无法读取</p><p>2.DOM 和 Js对象无法获得</p><p>3.AJAX 请求不能发送</p><h1 id="跨域方案"><a href="#跨域方案" class="headerlink" title="跨域方案"></a>跨域方案</h1><h2 id="1-jsonp"><a href="#1-jsonp" class="headerlink" title="1. jsonp"></a>1. jsonp</h2><p>为了减轻web服务器的负载，我们把js、css，img等静态资源分离到另一台独立域名的服务器上，在html页面中再通过相应的标签从不同域名下加载静态资源，而被浏览器允许，基于此原理，我们可以【通过动态创建script，仅能用get方法】，再请求一个带参网址实现跨域通信。</p><p>jsonp是请求之后后台包装好一段json，并且把数据放在一个callback函数，返回一个js文件，动态引入这个文件，下载完成js之后，会去调用这个callback,通过这样访问数据。</p><p>JSONP主要就是利用了script标签没有跨域限制的这个特性来完成的，以及使用方法回调的原理.（缺点：只能实现get方法）。</p><p>流程：</p><p>1.前端定义解析函数（例如 jsonpCallback=function(){….}）</p><p>2.通过 params 形式包装请求参数，并且声明执行函数(例如 cb=jsonpCallback)</p><p>3.后端获取前端声明的执行函数（jsonpCallback），并以带上参数并调用执行函数的方式传递给前端。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 基本用法 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 前端 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">window</span>.jsonpCallback = <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(res);</span></span><br><span class="line">  &#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://localhost:8080/api/a.js?a=123&amp;cb=sonpCallback&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="2-document-domain-iframe跨域（用于主域相同，子域不同的跨域应用场景）"><a href="#2-document-domain-iframe跨域（用于主域相同，子域不同的跨域应用场景）" class="headerlink" title="2. document.domain + iframe跨域（用于主域相同，子域不同的跨域应用场景）"></a>2. document.domain + iframe跨域（用于主域相同，子域不同的跨域应用场景）</h2><p>需要共享的页面【都】设置相同的 document.domain<br>我们只能把document.domain设置成自身或更高一级的父域，且主域必须相同。<br>例如：a.b.c.com 中某个文档的document.domain 可以设成a.b.c.com、b.c.com 、c.com中的任意一个</p><h2 id="3-location-hash-iframe跨域"><a href="#3-location-hash-iframe跨域" class="headerlink" title="3. location.hash + iframe跨域"></a>3. location.hash + iframe跨域</h2><p>实现原理： a欲与b跨域相互通信，通过中间页c来实现。 三个页面，不同域之间利用iframe的location.hash传值，相同域之间直接js访问来通信。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- a.html：(http://www.demo1.com/a.html) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;iframe&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://www.demo2.com/b.html&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;iframe&#x27;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// 向b.html传hash值</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        iframe.src = iframe.src + <span class="string">&#x27;#user=admin&#x27;</span>;</span></span><br><span class="line">    &#125;, 1000);</span><br><span class="line">    </span><br><span class="line"><span class="javascript">    <span class="comment">// 开放给同域c.html的回调方法</span></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">onCallback</span>(<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">&#x27;data from c.html ---&gt; &#x27;</span> + res);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- b.html：(http://www.demo2.com/b.html) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;iframe&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://www.demo1.com/c.html&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;iframe&#x27;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// 监听a.html传来的hash值，再传给c.html</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.onhashchange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">        iframe.src = iframe.src + location.hash;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- c.html：(http://www.demo1.com/c.html) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 监听b.html传来的hash值</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.onhashchange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 再通过操作同域a.html的js回调，将结果传回</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.parent.parent.onCallback(<span class="string">&#x27;hello: &#x27;</span> + location.hash.replace(<span class="string">&#x27;#user=&#x27;</span>, <span class="string">&#x27;&#x27;</span>));</span></span><br><span class="line">    &#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="4-cros"><a href="#4-cros" class="headerlink" title="4. cros"></a>4. cros</h2><p>跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器 让运行在一个 origin (domain) 上的 Web 应用被准许访问来自不同源服务器上的指定的资源。当一个资源从与该资源本身所在的服务器「不同的域、协议或端口」请求一个资源时，资源会发起一个「跨域 HTTP 请求」。</p><p>详见<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解</a></p><p>普通跨域请求：只服务端设置Access-Control-Allow-Origin: “XXX”即可，前端无须设置，若要带cookie请求：前后端都需要设置。</p><p>Access-Control-Allow-Credentials:true，发送http认证信息，withCredentials:true，设置带cookie</p><h2 id="5-Node-正向代理"><a href="#5-Node-正向代理" class="headerlink" title="5. Node 正向代理"></a>5. Node 正向代理</h2><p>引入：http-proxy-middleware</p><p>vue-cli高版本直接设置：proxy， 低版本设置：proxyTable，请求的时候不需要加上域名</p><h2 id="6-Nginx-反向代理"><a href="#6-Nginx-反向代理" class="headerlink" title="6. Nginx 反向代理"></a>6. Nginx 反向代理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">服务器设置：</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name local.test;</span><br><span class="line">        location &#x2F;api &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;localhost:8080;</span><br><span class="line">        &#125;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;localhost:8000;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="7-Websocket"><a href="#7-Websocket" class="headerlink" title="7. Websocket"></a>7. Websocket</h2><p>websocket 本质上是没有使用HTTP 的响应头的，所以没有跨域的限制<br>客户端和服务器之间存在持久的连接，浏览器与服务器全双工通信，双向数据传输不限制跨域。</p><h2 id="8-window-postMessage"><a href="#8-window-postMessage" class="headerlink" title="8. window.postMessage"></a>8. window.postMessage</h2><p>Window.postMessage(message, targetOrigin, [transfer]);<br> 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为https），端口号（443为https的默认值），以及主机  (两个页面的模数 Document.domain设置为相同的值) 时，这两个脚本才能相互通信。window.postMessage() 方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。</p><p> window.addEventListener(“message”, receiveMessage, false);<br>监听处理message 传递的数据<br>receiveMessage（e） {console.log(e.data)}</p><p>用途<br>1.页面和其打开的新窗口的数据传递</p><p>2.多窗口之间消息传递</p><p>3.页面与嵌套的 iframe 消息传递</p><h2 id="9-window-name-iframe来进行跨域"><a href="#9-window-name-iframe来进行跨域" class="headerlink" title="9. window.name+iframe来进行跨域"></a>9. window.name+iframe来进行跨域</h2><p>window的name属性特征：name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB），即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面window.name都有读写的权限。</p><p>因此，在同一个窗口打开(同一个iframe)，可共享name的值，name 的值只能是字符串。<br>思路： iframe打开一个不同域的页面，并将要访问的数据放在window.name中,然后将iframe转为同域的页面。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="comment">// cnblogs.com/a.html</span></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="comment">//iframe载入data.html页面会执行此函数</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> ifr = <span class="built_in">document</span>.getElementById(<span class="string">&quot;iframe&quot;</span>);</span></span><br><span class="line"><span class="javascript">  ifr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//这个时候iframe和a.html已经处于同一源，可以互相访问</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> data = ifr.contentWindow.name;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//获取iframe中的window.name，也就是data.html中给它设置的数据</span></span></span><br><span class="line">    alert(data);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  ifr.src = <span class="string">&#x27;b.html&#x27;</span>;<span class="comment">//这里的b.html为随便一个页面，只要与a.html同源就行，目的是让a.html能够访问到iframe中的东西，否则访问不到</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span> = <span class="string">&quot;iframe&quot;</span> <span class="attr">src</span> = <span class="string">&quot;cnblogs.com/data.html&quot;</span> <span class="attr">style</span> = <span class="string">&quot;display:none&quot;</span> <span class="attr">onload</span> = <span class="string">&quot;getData()&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure><p>参考资料：</p><p><a href="https://segmentfault.com/a/1190000011145364">https://segmentfault.com/a/1190000011145364</a><br><a href="https://segmentfault.com/a/1190000022398875#item-3-6">https://segmentfault.com/a/1190000022398875#item-3-6</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a><br><a href="https://www.cnblogs.com/sdcs/p/8484905.html">https://www.cnblogs.com/sdcs/p/8484905.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>前端缓存</title>
+    <link href="https://yeminshan.github.io/2020/04/15/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/"/>
+    <id>https://yeminshan.github.io/2020/04/15/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/</id>
+    <published>2020-04-15T01:05:35.000Z</published>
+    <updated>2021-04-14T01:52:48.752Z</updated>
+    
+    <content type="html"><![CDATA[<p>前端缓存分为：HTTP缓存和浏览器缓存</p><p><img src="https://upload-images.jianshu.io/upload_images/13277068-efe830b68127838c.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" alt="avatar"></p><h2 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2><ol><li>本地存储小容量</li></ol><table><thead><tr><th>类型</th><th>大小</th><th>说明</th></tr></thead><tbody><tr><td>Cookie</td><td>4K</td><td>主要用于用户信息的存储，Cookie的内容可以自动在请求的时候被传递给服务器。</td></tr><tr><td>LocalStorage</td><td>5M</td><td>数据将一直保存在浏览器内，直到用户清除浏览器缓存数据为止。</td></tr><tr><td>SessionStorage</td><td>5M</td><td>其他属性同LocalStorage，只不过它的生命周期同标签页的生命周期，当标签页被关闭时，SessionStorage也会被清除。</td></tr></tbody></table><ol start="2"><li>本地存储大容量<br>主要用在前端有大容量存储需求的页面上，例如，在线编辑浏览器或者网页邮箱。</li></ol><table><thead><tr><th>类型</th><th>大小</th><th>说明</th></tr></thead><tbody><tr><td>WebSql</td><td></td><td></td></tr><tr><td>IndexDB</td><td></td><td></td></tr></tbody></table><h2 id="往返缓存"><a href="#往返缓存" class="headerlink" title="往返缓存"></a>往返缓存</h2><pre><code>往返缓存又称为BFCache，是浏览器在前进后退按钮上为了提升历史页面的渲染速度的一种策略。该策略具体表现为，当用户前往新页面时，将当前页面的浏览器DOM状态保存到bfcache中；当用户点击后退按钮的时候，将页面直接从bfcache中加载，节省了网络请求的时间。</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前端缓存分为：HTTP缓存和浏览器缓存&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/13277068-efe830b68127838c.png?imageMogr2/auto-orient/
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深入了解vue</title>
+    <link href="https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/"/>
+    <id>https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/</id>
+    <published>2020-04-12T08:51:46.000Z</published>
+    <updated>2021-04-14T01:52:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://ustbhuangyi.github.io/vue-analysis/v2/prepare/">参考1</a></p><ol><li>vue 工作机制</li></ol><p>上图一张<br><a href="https://blog.csdn.net/RedLoVE0908/article/details/99749359">资料:Vue的内部运行机制</a><br><img src="https://img-blog.csdnimg.cn/20190819185138874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70" alt="avatar"><br><img src="https://cn.vuejs.org/images/lifecycle.png" alt="avatar"></p><ol start="2"><li>响应式原理实现<br>全靠Object.defineProperty（ES6，ES5无法shim的特性，因此不支持IE8及以下）,转换成getter/setter</li></ol><p>Object.defineProperty(obj, prop, descriptor)<br>直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</p><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>obj</td><td>要定义属性的对象。</td></tr><tr><td>prop</td><td>要定义或修改的属性的名称或 Symbol 。</td></tr><tr><td>descriptor</td><td>要定义或修改的属性描述符。</td></tr></tbody></table><table><thead><tr><th>descriptor属性</th><th>说明</th></tr></thead><tbody><tr><td>configurable</td><td>该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。</td></tr><tr><td>enumerable</td><td>当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。默认为 false。</td></tr><tr><td>value</td><td>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</td></tr><tr><td>writable</td><td>当且仅当该属性的 writable 键值为 true 时，属性的值，也就是上面的 value，才能被赋值运算符改变。默认为 false。</td></tr><tr><td>get</td><td>属性的 getter 函数，如果没有 getter，则为 undefined。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 this 对象（由于继承关系，这里的this并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。默认为 undefined。</td></tr><tr><td>set</td><td>属性的 setter 函数，如果没有 setter，则为 undefined。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 this 对象。</td></tr><tr><td>默认为 undefined。</td><td></td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">constructor</span>(<span class="params">options</span>)</span> &#123; </span><br><span class="line">  <span class="built_in">this</span>._data = options.data; </span><br><span class="line">  <span class="built_in">this</span>.observer(<span class="built_in">this</span>._data); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">observer</span>(<span class="params">value</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!value || <span class="keyword">typeof</span> value !== <span class="string">&quot;object&quot;</span>) &#123; <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="comment">//  对于data 逐个设置getter和setter</span></span><br><span class="line">     <span class="built_in">Object</span>.keys(value).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123; </span><br><span class="line">       <span class="built_in">this</span>.defineReactive(value, key, value[key]); </span><br><span class="line">       &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="function"><span class="title">defineReactive</span>(<span class="params">obj, key, val</span>)</span> &#123; </span><br><span class="line">      <span class="comment">//  </span></span><br><span class="line">       <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">         enumerable: <span class="literal">true</span> <span class="comment">/* 属性可枚举 */</span>, </span><br><span class="line">         configurable: <span class="literal">true</span> <span class="comment">/* 属性可被修改或删除 */</span>,</span><br><span class="line">          <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123; <span class="keyword">return</span> val; &#125;,</span><br><span class="line">          <span class="function"><span class="title">set</span>(<span class="params">newVal</span>)</span> &#123; </span><br><span class="line">            <span class="keyword">if</span> (newVal === val) <span class="keyword">return</span>;</span><br><span class="line">            <span class="built_in">this</span>.cb(newVal);</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>依赖收集与追踪</li></ol><p><img src="https://img-blog.csdnimg.cn/20190819190253771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70" alt="avatar"></p><p>在get中执行dep.depend()进行依赖绑定<br>在set中执行dep.notify()通知观察者进行视图更新<br>nextTick的异步更新策略<br>在响应式更新数据的过程中，如果一个数据的值在一段时间内频繁更新了很多次，会依次触发响应式setter-&gt;Dep-&gt;Watcher-&gt;update-&gt;patch,所以引入nextTick的异步更新策略，实现一个queue队列，会在下一个tick去执行一次上面的响应式更新操作，大大优化了性能。</p><p>使用到nextTick 的场景：<br>$nextTick(callback)。这里的回调函数（callback）将在数据更新完成，视图更新完毕之后被调用。</p><p>1.Vue生命周期的created()钩子函数进行的DOM操作一定要放在Vue.nextTick()的回调函数中.</p><p>原因： created()钩子函数执行的时候DOM 其实并未进行任何渲染，而此时进行DOM操作无异于徒劳，所以此处一定要将DOM操作的js代码放进Vue.nextTick()的回调函数中。<br>2.在数据变化后要执行的某个操作，而这个操作【需要使用随数据改变而改变的DOM结构的时候】，这个操作都应该放进Vue.nextTick()的回调函数中。更新数据后，想要使用js对新的视图进行操作时<br>3.在使用某些第三方插件时 ，这些插件需要【dom动态变化后重新应用该插件】，这时候就需要使用$nextTick()来重新应用插件的方法。</p><ol start="4"><li>编译<br>1 parse：（解析）利用正则将模板转换成抽象语法树（AST）；<br>2 optimize： （标记静态节点做优化）标记静态节点，以后update的时候，diff算法可以跳过静态节点<br>3 generate：（转成字符串）将抽象语法树（AST）转成字符串，供render去渲染DOM</li></ol><p>render function被渲染的时候，会对data对象进行数据读取，会触发getter函数，从而把data里面的属性进行依赖收集，依赖收集的目的是将这些属性放到观察者（Watcher）的观察队列中，一旦我们对data里面的属性进行修改时，就会触发setter函数，setter告诉观察者数据变化，需要重新渲染视图，观察者调用update来更新视图。</p><p>在update的时候，会执行【patch】，将新旧VNode传进去，通过diff算法算出差异，局部更新视图，做到最优化。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://ustbhuangyi.github.io/vue-analysis/v2/prepare/&quot;&gt;参考1&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;vue 工作机制&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上图一张&lt;br&gt;&lt;a href=&quot;https://blo
+      
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="https://yeminshan.github.io/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="https://yeminshan.github.io/tags/vue/"/>
+    
+  </entry>
+  
+</feed>

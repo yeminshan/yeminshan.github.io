@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vuex | 珊珊的小本子</title><meta name="keywords" content="vue,vuex"><meta name="author" content="Yvoone,yeminshan@126.com"><meta name="copyright" content="Yvoone"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="状态管理：即共享数据管理核心概念  store state &#x2F;&#x2F; 数据中心 mutations &#x2F;&#x2F; 操作数据 Actions &#x2F;&#x2F; 触发操作，执行动作，改变数据  状态管理模式 0.安装1.vuex 依赖Promise ，必要时npm install es6-promise –save 1.概念1.1定义 ： 专为vue.js应用程序开发的状态管理模式。集中式存储管理应用的所有组件的状态【共享的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex">
+<meta property="og:url" content="https://yeminshan.github.io/2020/04/12/Vuex/index.html">
+<meta property="og:site_name" content="珊珊的小本子">
+<meta property="og:description" content="状态管理：即共享数据管理核心概念  store state &#x2F;&#x2F; 数据中心 mutations &#x2F;&#x2F; 操作数据 Actions &#x2F;&#x2F; 触发操作，执行动作，改变数据  状态管理模式 0.安装1.vuex 依赖Promise ，必要时npm install es6-promise –save 1.概念1.1定义 ： 专为vue.js应用程序开发的状态管理模式。集中式存储管理应用的所有组件的状态【共享的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-04-12T06:52:23.000Z">
+<meta property="article:modified_time" content="2021-04-14T01:52:48.747Z">
+<meta property="article:author" content="Yvoone">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vuex">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yeminshan.github.io/2020/04/12/Vuex/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-14 09:52:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="珊珊的小本子" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">珊珊的小本子</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Vuex</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-04-12T06:52:23.000Z" title="发表于 2020-04-12 14:52:23">2020-04-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-14T01:52:48.747Z" title="更新于 2021-04-14 09:52:48">2021-04-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vuex"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>状态管理：即共享数据管理<br>核心概念</p>
+<ol>
+<li>store</li>
+<li>state // 数据中心</li>
+<li>mutations // 操作数据</li>
+<li>Actions // 触发操作，执行动作，改变数据</li>
+</ol>
+<p>状态管理模式</p>
+<p>0.安装<br>1.vuex 依赖Promise ，必要时npm install es6-promise –save</p>
+<p>1.概念<br>1.1定义 ： 专为vue.js应用程序开发的状态管理模式。集中式存储管理应用的所有组件的状态【共享的变量=&gt;全局变量】,并以相应的规则保证状态以一种可预测的方式发生变化【方法统一】。</p>
+<p>1.2 应用场景： 单页面应用不同组件的数据流通。【vuex state存放的数据是当前页面初始化生成的一个实例。刷新页面数据重新生成】</p>
+<p>对于简单的应用，使用 global event bus 即可。</p>
+<p>1.3：基础概念：</p>
+<p>1.3.0 store 仓库，实质是一个容器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.3.1 state  单一状态树 【实质是一个json对象？而且是应用唯一的】,响应式的.在计算属性返回即可.</p>
+<p>1.3.2 getters 对state中数据的一种过滤，加强属性。</p>
+<p>1.3.3 actions 对于state数据的修改动作在这里提交，提交即触发mutation修改数据</p>
+<p>1.3.4 mutations 更改vuex的store中的状态的唯一方法 ，只能执行同步操作。获取状态兑现： state= $store.state ，store .commit触发状态变化.[改变变量必须要用提交mution方法,不能直接修改state里的值]</p>
+<p>1.3.5 module 模块化 </p>
+<p>2.核心（统一在store.js里面设置）<br>2.1 state </p>
+<p>注意: 并不是所有的状态都放到vuex中进行管理,严格于单个组件的状态应作为组件的局部状态.</p>
+<p>获取store.js的state值赋给模板的data值：<br>2.1.1获取vuex的状态</p>
+<p> 计算属性返回<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> const Counter &#x3D; &#123;</span><br><span class="line">  template: &#96;&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      return store.state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>注意: 1.众组件频繁导入store. 解决方法: 在根实例注册store选项,这样子组件就可以用this.$store访问</p>
+<p>2.1.2 mapState 辅助函数</p>
+<p>当获取多个状态时,逐个声明为计算属性先得重复冗余</p>
+<p>解决方法:</p>
+<p>mapState 辅助生成计算属性,返回的是一个对象. 【需要先import】</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 在单独构建的版本中辅助函数为 Vuex.mapState</span><br><span class="line">import &#123; mapState &#125; from &#39;vuex&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  computed: mapState(&#123;</span><br><span class="line">    &#x2F;&#x2F; 箭头函数可使代码更简练</span><br><span class="line">    count: state &#x3D;&gt; state.count,</span><br><span class="line">    &#x2F;&#x2F; 计算属性的名称和state子节点名称相同, 可简写</span><br><span class="line">    &#x2F;&#x2F; 映射 this.count 为 store.state.count</span><br><span class="line">    &#x2F;&#x2F;&#39;count&#39;</span><br><span class="line">    &#x2F;&#x2F; 传字符串参数 &#39;count&#39; 等同于 &#96;state &#x3D;&gt; state.count&#96;</span><br><span class="line">    countAlias: &#39;count&#39;,</span><br><span class="line">    &#x2F;&#x2F; 为了能够使用 &#96;this&#96; 获取局部状态，必须使用常规函数</span><br><span class="line">    countPlusLocalState (state) &#123;</span><br><span class="line">      return state.count + this.localCount</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p>
+<p>2.1.3 对象展开运算符</p>
+<p>将mapState 返回的对象和局部计算属性混合使用.[即将多个对象合并为一个]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  localComputed () &#123; &#x2F;* ... *&#x2F; &#125;,</span><br><span class="line">  &#x2F;&#x2F; 使用对象展开运算符将此对象混入到外部对象中</span><br><span class="line">  ...mapState(&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><br>3.1 Getter ()</p>
+<p>可认同为store的计算属性,即从store中派生出来一些状态.gett而的返回值会根据他的依赖被缓存起来.</p>
+<p>3.1.1 getter接受state 作为第一个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; id: 1, text: &#39;...&#39;, done: true &#125;,</span><br><span class="line">      &#123; id: 2, text: &#39;...&#39;, done: false &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    doneTodos: state &#x3D;&gt; &#123;</span><br><span class="line">      return state.todos.filter(todo &#x3D;&gt; todo.done)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p></p>
+<p>3.1.2  通过属性访问</p>
+<p>getter 会暴露为 store.getters对象,可以通过属性进行访问.</p>
+<p>Getter 也可以接受其他 getter 作为第二个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  doneTodosCount: (state, getters) &#x3D;&gt; &#123;</span><br><span class="line">    return getters.doneTodos.length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p></p>
+<p>3.1.3 组件中使用,类似使用state</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  doneTodosCount () &#123;</span><br><span class="line">    return this.$store.getters.doneTodosCount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;﻿​</span><br></pre></td></tr></table></figure>
+<p><br>3.1.4 通过方法访问</p>
+<p>getter 可以放回一个函数,实现给getter传参,而且通过方法去调用时,每次都会进行调用,不缓存结果.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  getTodoById: (state) &#x3D;&gt; (id) &#x3D;&gt; &#123;</span><br><span class="line">    return state.todos.find(todo &#x3D;&gt; todo.id &#x3D;&#x3D;&#x3D; id)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;调用</span><br><span class="line">store.getters.getTodoById(2) &#x2F;&#x2F; -&gt; &#123; id: 2, text: &#39;...&#39;, done: false &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p></p>
+<p>3.1.5 mapGetters  辅助函数</p>
+<p>将store 中的getter 函数映射到局部计算属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapGetters &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  computed: &#123;</span><br><span class="line">  &#x2F;&#x2F; 使用对象展开运算符将 getter 混入 computed 对象中</span><br><span class="line">    ...mapGetters([</span><br><span class="line">      doneCount: &#39;doneTodosCount&#39;</span><br><span class="line">      &#39;anotherGetter&#39;,</span><br><span class="line">       &#x2F;&#x2F; 把 &#96;this.doneCount&#96; 映射为 &#96;this.$store.getters.doneTodosCount&#96;</span><br><span class="line">    ])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p></p>
+<p>4.1mutation（存放改变state的状态的方法）</p>
+<p>VUEX 提供commit 方法来修改状态</p>
+<p>每个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">   increment (state,n) &#123;</span><br><span class="line">     &#x2F;&#x2F; 变更状态</span><br><span class="line">     state.count++；</span><br><span class="line">   &#x2F;&#x2F;   state.count +&#x3D;n;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#x2F;&#x2F; 调用</span><br><span class="line"> store.commit(&#39;increment&#39;,10)</span><br><span class="line"> </span><br><span class="line"> store.commit(&#123;</span><br><span class="line">     type： &#39;increment&#39;,</span><br><span class="line">     params： 10</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+<p><br>mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)</p>
+<p>4.1.1 提交 载荷 payload</p>
+<p>store.commint传入额外的参数,即mutation的荷载</p>
+<p>参数可以是单个,也可以是一个对象</p>
+<p>4.1.2  对象风格的提交方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">store.commit(&#123;</span><br><span class="line">  type: &#39;increment&#39;,&#x2F;&#x2F;将提交的放在一个对象中</span><br><span class="line">  amount: 10</span><br><span class="line">&#125;)﻿​</span><br></pre></td></tr></table></figure>
+<p><br>4.1.3 mutation 遵守vue的相应规则</p>
+<p>1.初始化所需属性</p>
+<p>2.对象添加舒心更需要用</p>
+<p>vue.set(obj, ‘XXX’,  123) 或者 新对象替换老对象state.obj = { … state.obj , XXX: 123}  </p>
+<p>4.1.4 使用常量替代Mutation事件类型(事件名称)</p>
+<p>方法: 用单独的文件 将事件类型替代为 const 常量,暴露出去.</p>
+<pre><code>而后在store.js 中用常量名作为函数名.</code></pre><p>4.1.5 mutation 必需是同步函数</p>
+<p>因为异步函数的回调是不可追踪的.</p>
+<p>4.1.6 组件中提交Mutation</p>
+<p>你可以在组件中使用 this.$store.commit(‘xxx’) 提交 mutation，</p>
+<p>或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）。</p>
+<p>为使调用提交方法与组件的方法一样，可以将他到处重塑。（先import mapMutiations）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapMutations &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapMutations([</span><br><span class="line">      &#39;increment&#39;, &#x2F;&#x2F; 将 &#96;this.increment()&#96; 映射为 &#96;this.$store.commit(&#39;increment&#39;)&#96;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; &#96;mapMutations&#96; 也支持载荷：</span><br><span class="line">      &#39;incrementBy&#39; &#x2F;&#x2F; 将 &#96;this.incrementBy(amount)&#96; 映射为 &#96;this.$store.commit(&#39;incrementBy&#39;, amount)&#96;</span><br><span class="line">    ]),</span><br><span class="line">    ...mapMutations(&#123;</span><br><span class="line">      add: &#39;increment&#39; &#x2F;&#x2F; 将 &#96;this.add()&#96; 映射为 &#96;this.$store.commit(&#39;increment&#39;)&#96;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;﻿​</span><br></pre></td></tr></table></figure>
+
+
+<p>2.5  Action</p>
+<p>action  提交的是mutation 不直接更改状态(mutation是同步的，Action是异步的mutation)</p>
+<p>可包含任意异步操作</p>
+<p>Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象（作为参数！），因此你可以调用 context.commit 提交一个 mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters。context 对象为什么不是 store 实例本身了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">context &#123;</span><br><span class="line">    commit: ƒ boundCommit(type, payload, options)</span><br><span class="line">    dispatch: ƒ boundDispatch(type, payload)</span><br><span class="line">    getters: &#123;…&#125;</span><br><span class="line">    rootGetters: &#123;…&#125;</span><br><span class="line">    rootState: &#123;__ob__: Observer&#125;</span><br><span class="line">    state: &#123;…&#125;</span><br><span class="line">&#125;﻿​</span><br></pre></td></tr></table></figure>
+<p><br>2.5.1 分发Action [触发]</p>
+<p>Action 通过 store.dispatch 方法触发,处理 action处理函数返回的promise,并且返回promise</p>
+<p>store.dispatch(‘increment’)<br><br>Actions 支持同样的载荷方式和对象方式进行分发：</p>
+<p>```<br>// 以载荷形式分发<br>store.dispatch(‘incrementAsync’, {<br>  amount: 10<br>})</p>
+<p>// 以对象形式分发<br>store.dispatch({<br>  type: ‘incrementAsync’,<br>  amount: 10<br>})﻿</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">2.5.2调用异步API 和分发多重mutation</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;</span><br><span class="line">actions: &#123;</span><br><span class="line">  checkout (&#123; commit, state &#125;, products) &#123;</span><br><span class="line">    &#x2F;&#x2F; 把当前购物车的物品备份起来</span><br><span class="line">    const savedCartItems &#x3D; [...state.cart.added]</span><br><span class="line">    &#x2F;&#x2F; 发出结账请求，然后乐观地清空购物车</span><br><span class="line">    commit(types.CHECKOUT_REQUEST)</span><br><span class="line">    &#x2F;&#x2F; 购物 API 接受一个成功回调和一个失败回调</span><br><span class="line">    shop.buyProducts(</span><br><span class="line">      products,</span><br><span class="line">      &#x2F;&#x2F; 成功操作</span><br><span class="line">      () &#x3D;&gt; commit(types.CHECKOUT_SUCCESS),</span><br><span class="line">      &#x2F;&#x2F; 失败操作</span><br><span class="line">      () &#x3D;&gt; commit(types.CHECKOUT_FAILURE, savedCartItems)</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;﻿​</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>2.5.3组件中分发action</p>
+<p>你在组件中使用 this.$store.dispatch(‘xxx’) 分发 action，</p>
+<p>或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapActions &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapActions([</span><br><span class="line">      &#39;increment&#39;, &#x2F;&#x2F; 将 &#96;this.increment()&#96; 映射为 &#96;this.$store.dispatch(&#39;increment&#39;)&#96;</span><br><span class="line">      &#x2F;&#x2F; &#96;mapActions&#96; 也支持载荷：</span><br><span class="line">      &#39;incrementBy&#39; &#x2F;&#x2F; 将 &#96;this.incrementBy(amount)&#96; 映射为 &#96;this.$store.dispatch(&#39;incrementBy&#39;, amount)&#96;</span><br><span class="line">    ]),</span><br><span class="line">    ...mapActions(&#123;</span><br><span class="line">      add: &#39;increment&#39; &#x2F;&#x2F; 将 &#96;this.add()&#96; 映射为 &#96;this.$store.dispatch(&#39;increment&#39;)&#96;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p>
+<p>2.5.4 组合action</p>
+<p>利用 async / await，我们可以如下组合 action：</p>
+<p>```<br>// 假设 getData() 和 getOtherData() 返回的是 Promise</p>
+<p>actions: {<br>  async actionA ({ commit }) {<br>    commit(‘gotData’, await getData())<br>  },<br>  async actionB ({ dispatch, commit }) {<br>    await dispatch(‘actionA’) // 等待 actionA 完成<br>    commit(‘gotOtherData’, await getOtherData())<br>  }<br>}</p>
+<p>一个 <code>store.dispatch</code> 在不同模块中可以触发多个 action 函数。在这种情况下，只有当所有触发函数完成后，返回的 Promise 才会执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">2.6 Module</span><br><span class="line"></span><br><span class="line">将store对象切割成模块,每个模块拥有自己的state mutation action getter (嵌套子模块)</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;</span><br><span class="line">const moduleA &#x3D; &#123;</span><br><span class="line">  state: &#123; ... &#125;,</span><br><span class="line">  mutations: &#123; ... &#125;,</span><br><span class="line">  actions: &#123; ... &#125;,</span><br><span class="line">  getters: &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const moduleB &#x3D; &#123;</span><br><span class="line">  state: &#123; ... &#125;,</span><br><span class="line">  mutations: &#123; ... &#125;,</span><br><span class="line">  actions: &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    a: moduleA,</span><br><span class="line">    b: moduleB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">store.state.a &#x2F;&#x2F; -&gt; moduleA 的状态</span><br><span class="line">store.state.b &#x2F;&#x2F; -&gt; moduleB 的状态﻿​</span><br></pre></td></tr></table></figure>
+
+
+<p>2.6.1 模块的局部状态</p>
+<p>对于某块内部的mutation 和getter,接收的第一个参数是模块的局部状态对象.</p>
+<p>对于模块内部的 action，局部状态通过 context.state 暴露出来，根节点状态则为 context.rootState</p>
+<p>对于模块内部的 getter，根节点状态会作为第三个参数暴露出来：</p>
+<p>```<br>const moduleA = {<br>  state: { count: 0 },<br>  mutations: {<br>    increment (state) {<br>      // 这里的 <code>state</code> 对象是模块的局部状态<br>      state.count++<br>    }<br>  },<br>  getters: {<br>    doubleCount (state) {<br>      return state.count * 2<br>    }<br>  },<br>  actions: {<br>    //   局部状体通过context.state暴露出来<br>    incrementIfOddOnRootSum ({ state, commit, rootState }) {<br>      if ((state.count + rootState.count) % 2 === 1) {<br>        commit(‘increment’)<br>      }<br>    },<br>    getters: {<br>    sumWithRootCount (state, getters, rootState) {<br>      return state.count + rootState.count<br>    }<br>  }<br>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"> 2.6.2 命名空间</span><br><span class="line"></span><br><span class="line"> 模块内部的action mutation getter 注册在全局命名空间.</span><br><span class="line"></span><br><span class="line">模块可设置自己的命名空间,添加namespace: true,会自动根据注册路径调整命名.</span><br><span class="line"></span><br><span class="line"> 启用了命名空间的 getter 和 action 会收到局部化的 getter，dispatch 和 commit</span><br><span class="line"></span><br><span class="line"> 2.6.3  在带命名空间的模块内访问全局内容（Global Assets） </span><br><span class="line"></span><br><span class="line">如果你希望使用全局 state 和 getter，rootState 和 rootGetter 会作为第三和第四参数传入 getter，也会通过 context 对象的属性传入 action。</span><br><span class="line"></span><br><span class="line">若需要在全局命名空间内分发 action 或提交 mutation，将 &#123; root: true &#125; 作为第三参数传给 dispatch 或 commit 即可。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">2.6.4  在带命名空间的模块注册全局 action</span><br><span class="line"></span><br><span class="line"> 在带命名空间的模块注册全局 action，你可添加 root: true，并将这个 action 的定义放在函数 handler 中.</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;</span><br><span class="line">modules: &#123;</span><br><span class="line">    foo: &#123;</span><br><span class="line">      namespaced: true,</span><br><span class="line">      actions: &#123;</span><br><span class="line">        someAction: &#123;</span><br><span class="line">          root: true,</span><br><span class="line">          handler (namespacedContext, payload) &#123; ... &#125; &#x2F;&#x2F; -&gt; &#39;someAction&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>2.6.5 带命名空间的绑定函数</p>
+<p>当使用 mapState, mapGetters, mapActions 和 mapMutations 这些函数来绑定带命名空间的模块时,可以将模块的空间名称字符串作为第一个参数传递给map.. 函数，这样所有绑定都会自动将该模块作为上下文.</p>
+<p>通过使用 createNamespacedHelpers 创建基于某个命名空间辅助函数。它返回一个对象，对象里有新的绑定在给定命名空间值上的组件绑定辅助函数</p>
+<p>2.7 插件</p>
+<h5 id="vuex数据持久化"><a href="#vuex数据持久化" class="headerlink" title="vuex数据持久化"></a>vuex数据持久化</h5><ol>
+<li>使用vuex-along插件，解决刷新问题， store数据没有保留问题。 <strong><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vuex-along">vuex-along - 持久化存储 state 的 vuex 扩展</a></strong></li>
+</ol>
+<ol start="2">
+<li>其他插件 import persistedState from ‘vuex-persistedstate’   ….  plugins: [persistedState()]</li>
+</ol>
+<p><strong>数据清理</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.clearVuexAlong(local &#x3D; true, session &#x3D; true):void;</span><br><span class="line">clearVuexAlong() &#x2F;&#x2F; localStorage 和 sessionStorage 都会被清理</span><br><span class="line">clearVuexAlong(true,false) &#x2F;&#x2F; 只清理 localStorage</span><br><span class="line">clearVuexAlong(false,true) &#x2F;&#x2F; 只清理 sessionStorage</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> vuexAlong <span class="keyword">from</span> <span class="string">&#x27;vuex-along&#x27;</span></span><br><span class="line"><span class="keyword">import</span> createVuexAlong <span class="keyword">from</span> <span class="string">&#x27;vuex-along&#x27;</span></span><br><span class="line"><span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    menu,</span><br><span class="line">    user</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// plugins: [createVuexAlong]</span></span><br><span class="line">  plugins: [</span><br><span class="line">    createVuexAlong(&#123;</span><br><span class="line">      name: <span class="string">&#x27;admin&#x27;</span>, <span class="comment">// 设置保存的集合名字，避免同站点下的多项目数据冲突</span></span><br><span class="line">      local: &#123;</span><br><span class="line">        list: [ <span class="comment">// 需要监听的属性名或模块名的字符串列表</span></span><br><span class="line">          <span class="string">&#x27;user.currentMenu&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;user.userMsg&#x27;</span></span><br><span class="line">        ],</span><br><span class="line">        isFilter: <span class="literal">true</span> <span class="comment">// 过滤 list 中的字段而非保存, 标识除list 以外</span></span><br><span class="line">      &#125;,</span><br><span class="line">      session: &#123;</span><br><span class="line">        list: [</span><br><span class="line">        ] <span class="comment">// 保存 sessionStorage</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:yeminshan@126.com">Yvoone</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yeminshan.github.io/2020/04/12/Vuex/">https://yeminshan.github.io/2020/04/12/Vuex/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yeminshan.github.io" target="_blank">珊珊的小本子</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vue/">vue</a><a class="post-meta__tags" href="/tags/vuex/">vuex</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">深入了解vue</div></div></a></div><div class="next-post pull-right"><a href="/2020/04/12/vue-cli/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">vue/cli</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/03/29/Vue-Router/" title="Vue-Router"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-29</div><div class="title">Vue-Router</div></div></a></div><div><a href="/2020/04/12/vue-cli/" title="vue/cli"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-12</div><div class="title">vue/cli</div></div></a></div><div><a href="/2020/04/21/vue-插件封装/" title="vue 插件封装"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-21</div><div class="title">vue 插件封装</div></div></a></div><div><a href="/2020/04/17/vue单元测试/" title="vue单元测试"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-17</div><div class="title">vue单元测试</div></div></a></div><div><a href="/2020/04/11/vue搭建多页面应用/" title="vue搭建多页面应用"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-11</div><div class="title">vue搭建多页面应用</div></div></a></div><div><a href="/2020/04/10/vue渲染函数-jsx/" title="vue渲染函数&jsx"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-10</div><div class="title">vue渲染函数&jsx</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Yvoone</div><div class="author-info__description">珊珊的愿望就是有吃不完的小鱼干，还有吃不完的猪肉干牛肉干。所以在没有那么多吃的之前在这里都记着，挣到钱钱后换成喜欢的小鱼干哈</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#vuex%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">vuex数据持久化</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/14/%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%94%B5%E8%84%91/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/04/14/%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%94%B5%E8%84%91/" title="无题">无题</a><time datetime="2021-04-14T01:52:48.752Z" title="发表于 2021-04-14 09:52:48">2021-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/14/Untitled/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/04/14/Untitled/" title="无题">无题</a><time datetime="2021-04-14T01:52:48.746Z" title="发表于 2021-04-14 09:52:48">2021-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/28/%E5%88%9D%E5%98%97%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="初嘗微前端"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初嘗微前端"/></a><div class="content"><a class="title" href="/2020/12/28/%E5%88%9D%E5%98%97%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="初嘗微前端">初嘗微前端</a><time datetime="2020-12-28T08:35:59.000Z" title="发表于 2020-12-28 16:35:59">2020-12-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/13/promise/" title="promise"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="promise"/></a><div class="content"><a class="title" href="/2020/11/13/promise/" title="promise">promise</a><time datetime="2020-11-13T07:35:54.000Z" title="发表于 2020-11-13 15:35:54">2020-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/25/%E9%A3%9F%E7%94%A8nginx/" title="食用nginx"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="食用nginx"/></a><div class="content"><a class="title" href="/2020/09/25/%E9%A3%9F%E7%94%A8nginx/" title="食用nginx">食用nginx</a><time datetime="2020-09-25T02:41:16.000Z" title="发表于 2020-09-25 10:41:16">2020-09-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Yvoone</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
