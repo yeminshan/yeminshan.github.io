@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yeminshan.github.io/"/>
-  <updated>2021-04-14T01:52:48.752Z</updated>
+  <updated>2021-04-15T02:38:41.251Z</updated>
   <id>https://yeminshan.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gitbook 初使用</title>
+    <link href="https://yeminshan.github.io/2021/04/15/gitbook-%E5%88%9D%E4%BD%BF%E7%94%A8/"/>
+    <id>https://yeminshan.github.io/2021/04/15/gitbook-%E5%88%9D%E4%BD%BF%E7%94%A8/</id>
+    <published>2021-04-15T02:37:31.000Z</published>
+    <updated>2021-04-15T02:38:41.251Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gitbook</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -458,36 +480,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>深入了解vue</title>
-    <link href="https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/"/>
-    <id>https://yeminshan.github.io/2020/04/12/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3vue/</id>
-    <published>2020-04-12T08:51:46.000Z</published>
-    <updated>2021-04-14T01:52:48.753Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://ustbhuangyi.github.io/vue-analysis/v2/prepare/">参考1</a></p><ol><li>vue 工作机制</li></ol><p>上图一张<br><a href="https://blog.csdn.net/RedLoVE0908/article/details/99749359">资料:Vue的内部运行机制</a><br><img src="https://img-blog.csdnimg.cn/20190819185138874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70" alt="avatar"><br><img src="https://cn.vuejs.org/images/lifecycle.png" alt="avatar"></p><ol start="2"><li>响应式原理实现<br>全靠Object.defineProperty（ES6，ES5无法shim的特性，因此不支持IE8及以下）,转换成getter/setter</li></ol><p>Object.defineProperty(obj, prop, descriptor)<br>直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</p><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>obj</td><td>要定义属性的对象。</td></tr><tr><td>prop</td><td>要定义或修改的属性的名称或 Symbol 。</td></tr><tr><td>descriptor</td><td>要定义或修改的属性描述符。</td></tr></tbody></table><table><thead><tr><th>descriptor属性</th><th>说明</th></tr></thead><tbody><tr><td>configurable</td><td>该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。</td></tr><tr><td>enumerable</td><td>当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。默认为 false。</td></tr><tr><td>value</td><td>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</td></tr><tr><td>writable</td><td>当且仅当该属性的 writable 键值为 true 时，属性的值，也就是上面的 value，才能被赋值运算符改变。默认为 false。</td></tr><tr><td>get</td><td>属性的 getter 函数，如果没有 getter，则为 undefined。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 this 对象（由于继承关系，这里的this并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。默认为 undefined。</td></tr><tr><td>set</td><td>属性的 setter 函数，如果没有 setter，则为 undefined。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 this 对象。</td></tr><tr><td>默认为 undefined。</td><td></td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">constructor</span>(<span class="params">options</span>)</span> &#123; </span><br><span class="line">  <span class="built_in">this</span>._data = options.data; </span><br><span class="line">  <span class="built_in">this</span>.observer(<span class="built_in">this</span>._data); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">observer</span>(<span class="params">value</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!value || <span class="keyword">typeof</span> value !== <span class="string">&quot;object&quot;</span>) &#123; <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="comment">//  对于data 逐个设置getter和setter</span></span><br><span class="line">     <span class="built_in">Object</span>.keys(value).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123; </span><br><span class="line">       <span class="built_in">this</span>.defineReactive(value, key, value[key]); </span><br><span class="line">       &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="function"><span class="title">defineReactive</span>(<span class="params">obj, key, val</span>)</span> &#123; </span><br><span class="line">      <span class="comment">//  </span></span><br><span class="line">       <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">         enumerable: <span class="literal">true</span> <span class="comment">/* 属性可枚举 */</span>, </span><br><span class="line">         configurable: <span class="literal">true</span> <span class="comment">/* 属性可被修改或删除 */</span>,</span><br><span class="line">          <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123; <span class="keyword">return</span> val; &#125;,</span><br><span class="line">          <span class="function"><span class="title">set</span>(<span class="params">newVal</span>)</span> &#123; </span><br><span class="line">            <span class="keyword">if</span> (newVal === val) <span class="keyword">return</span>;</span><br><span class="line">            <span class="built_in">this</span>.cb(newVal);</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>依赖收集与追踪</li></ol><p><img src="https://img-blog.csdnimg.cn/20190819190253771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlZExvVkUwOTA4,size_16,color_FFFFFF,t_70" alt="avatar"></p><p>在get中执行dep.depend()进行依赖绑定<br>在set中执行dep.notify()通知观察者进行视图更新<br>nextTick的异步更新策略<br>在响应式更新数据的过程中，如果一个数据的值在一段时间内频繁更新了很多次，会依次触发响应式setter-&gt;Dep-&gt;Watcher-&gt;update-&gt;patch,所以引入nextTick的异步更新策略，实现一个queue队列，会在下一个tick去执行一次上面的响应式更新操作，大大优化了性能。</p><p>使用到nextTick 的场景：<br>$nextTick(callback)。这里的回调函数（callback）将在数据更新完成，视图更新完毕之后被调用。</p><p>1.Vue生命周期的created()钩子函数进行的DOM操作一定要放在Vue.nextTick()的回调函数中.</p><p>原因： created()钩子函数执行的时候DOM 其实并未进行任何渲染，而此时进行DOM操作无异于徒劳，所以此处一定要将DOM操作的js代码放进Vue.nextTick()的回调函数中。<br>2.在数据变化后要执行的某个操作，而这个操作【需要使用随数据改变而改变的DOM结构的时候】，这个操作都应该放进Vue.nextTick()的回调函数中。更新数据后，想要使用js对新的视图进行操作时<br>3.在使用某些第三方插件时 ，这些插件需要【dom动态变化后重新应用该插件】，这时候就需要使用$nextTick()来重新应用插件的方法。</p><ol start="4"><li>编译<br>1 parse：（解析）利用正则将模板转换成抽象语法树（AST）；<br>2 optimize： （标记静态节点做优化）标记静态节点，以后update的时候，diff算法可以跳过静态节点<br>3 generate：（转成字符串）将抽象语法树（AST）转成字符串，供render去渲染DOM</li></ol><p>render function被渲染的时候，会对data对象进行数据读取，会触发getter函数，从而把data里面的属性进行依赖收集，依赖收集的目的是将这些属性放到观察者（Watcher）的观察队列中，一旦我们对data里面的属性进行修改时，就会触发setter函数，setter告诉观察者数据变化，需要重新渲染视图，观察者调用update来更新视图。</p><p>在update的时候，会执行【patch】，将新旧VNode传进去，通过diff算法算出差异，局部更新视图，做到最优化。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://ustbhuangyi.github.io/vue-analysis/v2/prepare/&quot;&gt;参考1&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;vue 工作机制&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;上图一张&lt;br&gt;&lt;a href=&quot;https://blo
-      
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="https://yeminshan.github.io/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="https://yeminshan.github.io/tags/vue/"/>
     
   </entry>
   
